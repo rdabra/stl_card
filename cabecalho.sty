@@ -1,0 +1,184 @@
+% Lingua portuguesa %
+\usepackage[english]{babel}
+
+\usepackage[svgnames]{xcolor} % Required for colour specification
+
+\usepackage{graphicx}
+
+\usepackage{bold-extra}
+
+\usepackage{bookman}
+
+\usepackage[margin=15pt,font=footnotesize,labelfont=bf,labelsep=endash,aboveskip=-3pt,belowskip=-11pt]{caption}
+
+\usepackage{wrapfig}
+\usepackage{adforn}
+
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{inconsolata}
+\usepackage{listings}
+\lstdefinestyle{mystyle}{language=C++,
+                basicstyle=\scriptsize\ttfamily,
+                keywordstyle=\color{blue}\ttfamily,
+                stringstyle=\color{red}\ttfamily,
+                commentstyle=\color{green}\ttfamily,
+                morecomment=[l][\color{magenta}]{\#}
+}
+
+
+%\UseRawInputEncoding
+
+
+
+%\usepackage[cmintegrals,cmbraces]{newtxmath}
+\usepackage{ebgaramond-maths}
+\usepackage[T1]{fontenc}
+
+
+%\linespread{1.1}
+
+\newcommand{\ita}[1]{\textit{#1}}
+
+\epigraphtextposition{flushright}
+\newcommand{\epig}[3]{
+\linespread{1.0}\epigraph{\footnotesize{#1}}{\footnotesize{\ita{#2}\\
+\textsc{#3}}}\linespread{1.2}}
+
+
+%\usepackage{lettrine}
+
+%\usepackage[stable]{footmisc}
+
+
+%\renewcommand{\LettrineFontHook}{\fontfamily{pbk}}
+%\setcounter{DefaultLines}{2}
+
+
+
+\title{}
+\author{Roberto D Algarte}
+
+
+
+% TITLE PAGE
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\newcommand{\plogo}{\fbox{$\mathcal{PL}$}} % Generic dummy publisher logo
+\newcommand\BHUGE{\@setfontsize\Huge{30}{40}}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+\UseRawInputEncoding
+
+\newcommand*{\titleGP}{\begingroup % Create the command for including the title page in the document
+
+    \thispagestyle{empty}
+
+	\centering % Centre everything on the title page
+	
+	%------------------------------------------------
+	%	Top rules
+	%------------------------------------------------
+	
+	\rule{\textwidth}{1pt} % Thick horizontal rule
+	
+	\vspace{2pt}\vspace{-\baselineskip} % Whitespace between rules
+	
+	\rule{\textwidth}{0.4pt} % Thin horizontal rule
+	
+	\vspace{0.1\textheight} % Whitespace between the top rules and title
+	
+	%------------------------------------------------
+	%	Title
+	%------------------------------------------------
+	
+	\textcolor{Blue}{ % Red font color
+		{\large A CONCISE INTRODUCTION TO THE}\\[2.0\baselineskip]
+	}
+		{\huge C++ PROGRAMMING LANGUAGE}\\[0.5\baselineskip]
+	
+	\vspace{0.025\textheight} % Whitespace between the title and short horizontal rule
+	
+	\rule{0.3\textwidth}{0.4pt} % Short horizontal rule under the title
+	
+	\vspace{0.1\textheight} % Whitespace between the thin horizontal rule and the author name
+	
+	%------------------------------------------------
+	%	Author
+	%------------------------------------------------
+	
+	{ \textsc{Roberto D Algarte}} % Author name
+	
+	\vfill % Whitespace between the author name and publisher
+	
+	%------------------------------------------------
+	%	Publisher
+	%------------------------------------------------
+	
+	{\large\textcolor{Red}{\plogo}}\\[0.5\baselineskip] % Publisher logo
+	
+	{\large\textsc{the publisher}} % Publisher
+	
+	\vspace{0.1\textheight} % Whitespace under the publisher text
+	
+	%------------------------------------------------
+	%	Bottom rules
+	%------------------------------------------------
+	
+	\rule{\textwidth}{0.4pt} % Thin horizontal rule
+	
+	\vspace{2pt}\vspace{-\baselineskip} % Whitespace between rules
+	
+	\rule{\textwidth}{1pt} % Thick horizontal rule
+
+\clearpage
+\thispagestyle{empty}
+\mbox{}
+
+
+\endgroup}
+
+
+\newcommand{\aut}{\textsc}
+\newcommand{\nob}[1]{\textbf{#1}}
+\newcommand{\bfi}[2]{\textbf{#1}\index{#2}}
+\newcommand{\ftn}[1]{\footnotemark\footnote{#1}}
+
+\usepackage{url}
+\urlstyle{tt}
+
+
+%\centering % Center all text
+%\vspace*{\baselineskip} % White space at the top of the page
+%
+%\rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt} % Thick horizontal line
+%\rule{\textwidth}{0.4pt}\\[\baselineskip] % Thin horizontal line
+%
+%{\huge O REPERTÓRIO DOS BEATLES}\\[0.2\baselineskip]
+%
+%\rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt} % Thin horizontal line
+%\rule{\textwidth}{1.6pt}\\[\baselineskip] % Thick horizontal line
+%\vspace*{3\baselineskip}
+%
+%\scshape % Small caps
+%{\LARGE Roberto Dias Algarte} \\ [3\baselineskip]
+%
+%
+%
+%
+%
+%\vfill % Whitespace between editor names and publisher logo
+%
+%
+%{\scshape 2019} \\[0.3\baselineskip] % Year published
+%{\large extratodomiolo.com}\par % Publisher
+
+
+
+\newcommand{\textsb}[1]{{\fontfamily{jkpx}\fontseries{sb}\selectfont #1}}
