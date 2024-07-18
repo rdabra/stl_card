@@ -1,3 +1,3 @@
-# icpp
-Yet another book on introduction to C++
+# stl_card
+Yet another sheet on STL
 # stl_card
