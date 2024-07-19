@@ -3,6 +3,8 @@
 \usepackage{blindtext}
 
 \usepackage{multicol}
+\usepackage{enumitem}
+\usepackage[dvipsnames]{xcolor}
 
 %\usepackage{mlmodern}
 %\usepackage[T1]{fontenc}
@@ -10,20 +12,82 @@
 \usepackage[condensed,math]{iwona}
 \usepackage[T1]{fontenc}
 
+
+
 % Marca d'agua
 %\usepackage{draftwatermark}
 %\SetWatermarkText{Draft}
 %\SetWatermarkScale{5}
 
 \setlength{\columnseprule}{.5pt}
+\linespread{.95}
+
+\usepackage{titlesec}
+\titlespacing{\subsection}{0pc}{3.pt}{1.pt}
+\titlespacing{\subsubsection}{0pc}{3.pt}{1.pt}
+
+\definecolor{mygray}{RGB}{240, 240, 240}
+\pagecolor{mygray}
 
 \begin{document}
-\footnotesize
+\scriptsize
 \begin{multicols*}{5}
-\paragraph{Iterators}	
-Pointer-like types created to implement the iterator pattern in STL. The iterator pattern states that aggregate strucutures and their element-acessing functions should be decoupled.  
+{\color{Brown}
+\subsection*{CONTAINERS}	
+Aggregates that provide element insertion, removal and access.
+
+\subsubsection*{\textsc{Sequence Containers}} 
+}
+
+{\color{Blue}
+\subsection*{ITERATORS}	
+Pointer-like types created to implement the iterator pattern in STL. The iterator pattern states that aggregate structures and element-accessing functions should be decoupled.
+
+\subsubsection*{\textsc{Iteratable Aggregates}} 
+All types of STL containers, C arrays, input and output streams.
+
+\subsubsection*{\textsc{Main Concepts}} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{.3pt}
+	\item \textbf{std::output\_iterator}: a type that can be both pre- and post-incremented, related to a given structure to which values can be written (e.g. output streams);
+	\item \textbf{std::ostream\_iterator}: a specific type of std::out\-put\_i\-te\-ra\-tor that writes to an output stream;
+	\item \textbf{std::input\_iterator}: a type that can be both pre- and post-incremented, related to a given structures whose values can be read (e.g. input streams);
+	\item \textbf{std::istream\_iterator}: a specific type of std::in\-put\_i\-te\-ra\-tor that reads from an input stream;
+	\item \textbf{std::forward\_iterator}: an std::input\_iterator that has equality comparison and multi-pass, which means that it can traverse multiple times the elements of an aggregate (e.g. containers); 
+	\item \textbf{std::bidirectional\_iterator}: a forward\_iterator able to traverse backwards; 
+	\item \textbf{std::random\_access\_iterator}: a bidirectional\_iterator that supports subscripting with $O(1)$ time access to elements; 
+	\item \textbf{std::contiguous\_iterator}: a specific ran\-dom\_ac\-cess\_i\-te\-ra\-tor that traverses elements stored contiguously in memory (e.g. std::vector). 
+\end{itemize}
+
+\subsubsection*{\textsc{Range Functions}} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{.3pt}
+	\item  \emph{\textbf{std::begin}}: returns the first element read-write iterator. The function \emph{\textbf{std::cbegin}} returns the read-only version;
+	\item  \emph{\textbf{std::end}}: returns the one-past-the-last element read-write iterator. The function \emph{\textbf{std::cend}} returns the read-only version;
+	\item  \emph{\textbf{std::rbegin}}: returns the first element read-write reverse iterator. The function \emph{\textbf{std::crbegin}} returns the read-only version;
+	\item  \emph{\textbf{std::rend}}: returns the one-past-the-last element read-write reverse iterator. The function \emph{\textbf{std::crend}} returns the read-only version;
+\end{itemize}
+
+\subsubsection*{\textsc{Main Adapters}} 
+Iterator wrappers created to encapsulate some important iterator-related functionalities. 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{.3pt}
+	\item \textbf{std::reverse\_iterator}: performs reverse order traversal. This adapter can be created by the helper function \emph{\textbf{std::make\_reverse\_iterator}};
+	\item \textbf{std::move\_iterator}: performs std::move of elements from one aggregate to another. This adapter can be created by the helper function \emph{\textbf{std::make\_move\_iterator}};
+	\item \textbf{std::insert\_iterator}: performs insertion of element at a specified position. This adapter can be created by the helper function \emph{\textbf{std::inserter}};
+	\item \textbf{std::back\_insert\_iterator}: performs back insertion of elements. This adapter can be created by the helper function \emph{\textbf{std::back\_inserter}};
+	\item \textbf{std::front\_insert\_iterator}: performs front insertion of elements. This adapter can be created by the helper function \emph{\textbf{std::front\_inserter}};
+\end{itemize}
 
 
-
+\subsubsection*{\textsc{Main Operations}} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{.3pt}
+	\item  \emph{\textbf{std::distance}}: returns the number of elements between two iterators in which the first is included and last excluded;
+	\item  \emph{\textbf{std::advance}}: advances an iterator by a given distance;
+	\item  \emph{\textbf{std::next}}: increments an iterator and returns it;
+	\item  \emph{\textbf{std::prev}}: decrements an iterator and returns it;
+\end{itemize}
+}
 \end{multicols*}
 \end{document}
