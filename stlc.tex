@@ -5,13 +5,14 @@
 \usepackage{multicol}
 \usepackage{enumitem}
 \usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
 
-%\usepackage{mlmodern}
-%\usepackage[T1]{fontenc}
+
 
 \usepackage[condensed,math]{iwona}
-\usepackage[T1]{fontenc}
 
+\usepackage[sfdefault,condensed]{roboto}  %% Option 'sfdefault' only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
 
 
 % Marca d'agua
@@ -24,29 +25,110 @@
 
 \usepackage{titlesec}
 \titlespacing{\subsection}{0pc}{3.pt}{1.pt}
-\titlespacing{\subsubsection}{0pc}{3.pt}{1.pt}
+\titlespacing{\subsubsection}{0pc}{1.5pt}{1.pt}
 
-\definecolor{mygray}{RGB}{240, 240, 240}
+\definecolor{mygray}{RGB}{250, 250, 250}
 \pagecolor{mygray}
 
+\usepackage{float}
+
+\setlength{\textfloatsep}{1pt}
+\setlength{\floatsep}{1pt}
+\setlength{\intextsep}{1pt}
+
 \begin{document}
+\noindent
+{\Large{\textbf{\emph{C++ Standard Template Library (STL) Quick Reference}}, {\small version 1.0}}	
+}
+
+\noindent
+{\small  Roberto D. Algarte (2024)}
+
 \scriptsize
 \begin{multicols*}{5}
-{\color{Brown}
+{\color{Blue}
 \subsection*{CONTAINERS}	
-Aggregates that provide element insertion, removal and access.
+\noindent
+Aggregates of elements that provide element insertion, removal and access.
+
+\subsubsection*{\textsc{Theory} - \emph{Time Complexity}} 
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=.21]{complexity.jpg}	
+\end{center}
+\end{figure}
+
+\subsubsection*{\textsc{Theory} - \emph{Linear Aggregates}} 
+
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{.3pt}
+	\item \emph{Array}: static or dynamic structure whose elements have defined positions and are stored in contiguous memory. Insertion and removal of elements may imply repositioning of other elements or repositioning of the entire structure; 
+	\item \emph{Linked list}: dynamic structure whose elements may not be stored contiguously. A node (list element) is composed by a value and one or two references to adjacent nodes. Nodes of a \emph{doubly-linked} list have two references, and of a \emph{singly-linked}, one reference. Insertion and removal don't imply repositioning of other elements;
+	\item \emph{Stack}: LIFO dynamic structure with one end, in which insertion, deletion and access are performed;
+	\item \emph{Queue}: FIFO dynamic structure with two ends, one for insertion and another for removal; access can be performed on both. In a \emph{double-ended} queue, both ends allow insertion and removal;  
+\end{itemize}
 
 \subsubsection*{\textsc{Sequence Containers}} 
+\noindent
+Containers whose elements can be accessed sequentially and are stored contiguously in memory.
+
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{.3pt}
+	\item \textbf{std::array}: wrapper for C static arrays;
+	\item \textbf{std::vector}: implementation of a dynamic array. Insertion and removal are $O(1)$ at the end, $O(n)$ elsewhere; access is $O(1)$;
+	\item \textbf{std::dequeue}: implementation of a double-ended queue. Insertion, removal and access are $O(1)$;
+	\item \textbf{std::forward\_list}: implementation of a singly-linked list. Insertion and removal are $O(1)$; access is $O(n)$;  
+	\item \textbf{std::list}: implementation of a doubly-linked list. Insertion and removal are $O(1)$; access is $O(n)$;  
+\end{itemize}
+
+\subsubsection*{\textsc{Sequence Container Adapters}} 
+\noindent
+Wrappers created around std::dequeue to provide other types of aggregates.
+
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{.3pt}
+	\item \textbf{std::stack}: implementation of a stack;
+	\item \textbf{std::queue}: implementation of a simple queue;
+	\item \textbf{std::priority\_queue}: implementation of a queue in which the front element must observe a priority condition (the largest, by default). Insertion and removal are $O(log(n))$;
+\end{itemize}
+\noindent
+
+\subsubsection*{\textsc{Associative Containers}} 
+\noindent
+Containers constituted by (non)primary key sorted elements or pair of (non)primary key-value sorted elements that are  inserted, removed and accessed in $O(log(n))$ time complexity for the worst case.
+
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{.3pt}
+	\item \textbf{std::set}: constituted by primary key elements;
+	\item \textbf{std::map}: constituted by primary key-value elements;
+	\item \textbf{std::multiset}: constituted by non primary key elements;
+	\item \textbf{std::multimap}: constituted by non primary key-value elements;  
+\end{itemize}
+\noindent
+Each one of these types has its \textbf{std::unordered\_*} counterpart, whose elements are inserted or removed in $O(1)$, and accessed in $O(n)$ for the worst case. 
+
+
 }
+
+\par\noindent\rule{155pt}{0.4pt}
+
+{\color{Blue}
+\subsection*{I/O STREAMS}	
+\blindtext
+}
+
+\par\noindent\rule{155pt}{0.4pt}
 
 {\color{Blue}
 \subsection*{ITERATORS}	
+\noindent
 Pointer-like types created to implement the iterator pattern in STL. The iterator pattern states that aggregate structures and element-accessing functions should be decoupled.
 
 \subsubsection*{\textsc{Iteratable Aggregates}} 
+\noindent
 All types of STL containers, C arrays, input and output streams.
 
-\subsubsection*{\textsc{Main Concepts}} 
+\subsubsection*{\textsc{Concepts}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{.3pt}
 	\item \textbf{std::output\_iterator}: a type that can be both pre- and post-incremented, related to a given structure to which values can be written (e.g. output streams);
@@ -68,7 +150,8 @@ All types of STL containers, C arrays, input and output streams.
 	\item  \emph{\textbf{std::rend}}: returns the one-past-the-last element read-write reverse iterator. The function \emph{\textbf{std::crend}} returns the read-only version;
 \end{itemize}
 
-\subsubsection*{\textsc{Main Adapters}} 
+\subsubsection*{\textsc{Adapters}} 
+\noindent
 Iterator wrappers created to encapsulate some important iterator-related functionalities. 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{.3pt}
@@ -80,7 +163,7 @@ Iterator wrappers created to encapsulate some important iterator-related functio
 \end{itemize}
 
 
-\subsubsection*{\textsc{Main Operations}} 
+\subsubsection*{\textsc{Operations}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{.3pt}
 	\item  \emph{\textbf{std::distance}}: returns the number of elements between two iterators in which the first is included and last excluded;
