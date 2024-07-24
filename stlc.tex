@@ -6,6 +6,7 @@
 \usepackage{enumitem}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{graphicx}
+\usepackage{hyperref}
 
 
 
@@ -27,7 +28,7 @@
 \titlespacing{\subsection}{0pc}{3.pt}{1.pt}
 \titlespacing{\subsubsection}{0pc}{1.5pt}{1.pt}
 
-\definecolor{mygray}{RGB}{250, 250, 250}
+\definecolor{mygray}{RGB}{245, 245, 245}
 \pagecolor{mygray}
 
 \usepackage{float}
@@ -38,29 +39,34 @@
 
 \begin{document}
 \noindent
-{\Large{\textbf{\emph{C++ Standard Template Library (STL) Quick Reference}}, {\small version 1.0}}	
+{\large{\textbf{\emph{C++ Standard Library Cheat Sheet}}, {\small version 1.0}}	
 }
 
 \noindent
 {\small  Roberto D. Algarte (2024)}
+\par\noindent\rule{\linewidth}{0.4pt}
 
 \scriptsize
 \begin{multicols*}{5}
 
 {\color{Blue}
-\subsection*{NOTATION}	
+\subsection*{\center{\textsc{notation}}}	
 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-	\item \textbf{priority\_queue} @ $<$queue$>$: class ``pri\-ori\-ty\_que\-ue'' that belongs to library ``queue'';
-	\item \emph{\textbf{setbase}} @ $<$iomanip$>$: standalone function ``setbase'' that belongs to library ``iomanip'';
-	\item stream.\emph{\textbf{good}} @ $<$iostream$>$: member function ``good'' of an object from class ``stream'' that belongs to ``iostream''; REVER
+	\item \textbf{priority\_queue} @ $<$queue$>$: class ``std::pri\-ori\-ty\_que\-ue'' that belongs to library ``queue''. 
+	\item \emph{\textbf{setbase}} @ $<$iomanip$>$: standalone function ``std::setbase'' that belongs to library ``iomanip'';
+	\item basic\_ios::\emph{\textbf{good}} @ $<$iostream$>$: member function ``good'' of an object from class ``std::basic\_ios'' that belongs to library ``iostream''; 
+	\item Items in lists are alphabetically sorted; 
+	\item Section titles are linked to \href{https://en.cppreference.com}{\underline{cppreference.com}} 
 \end{itemize}
+
+\par\noindent\rule{155pt}{0.4pt}
 
 }
 
 {\color{Blue}
-\subsection*{CONTAINERS}	
+\subsection*{\href{https://en.cppreference.com/w/cpp/container}{\underline{CONTAINERS}}}	
 \noindent
 Aggregates of elements that provide element insertion, removal and access.
 
@@ -88,10 +94,10 @@ Containers whose elements can be accessed sequentially and are stored contiguous
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
 	\item \textbf{array} @ $<$array$>$: wrapper for C static arrays;
-	\item \textbf{vector} @ $<$vector$>$: implementation of a dynamic array. Insertion and removal are $O(1)$ at the end, $O(n)$ elsewhere; access is $O(1)$;
 	\item \textbf{dequeue} @ $<$dequeue$>$: implementation of a double-ended queue. Insertion, removal and access are $O(1)$;
 	\item \textbf{forward\_list} @ $<$forward\_list$>$: implementation of a singly-linked list. Insertion and removal are $O(1)$; access is $O(n)$. Provided by $<$forward\_list$>$;  
 	\item \textbf{list} @ $<$list$>$: implementation of a doubly-linked list. Insertion and removal are $O(1)$; access is $O(n)$;
+	\item \textbf{vector} @ $<$vector$>$: implementation of a dynamic array. Insertion and removal are $O(1)$ at the end, $O(n)$ elsewhere; access is $O(1)$;
 \end{itemize}
 
 \subsubsection*{\textsc{Sequence Container Adapters}} 
@@ -100,9 +106,9 @@ Wrappers created around dequeue to provide other types of aggregates.
 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-	\item \textbf{stack} @ $<$stack$>$: implementation of a stack;
-	\item \textbf{queue} @ $<$queue$>$: implementation of a simple queue;
 	\item \textbf{priority\_queue} @ $<$queue$>$: implementation of a queue in which the front element must observe a priority condition (the largest, by default). Insertion and removal are $O(log(n))$;
+	\item \textbf{queue} @ $<$queue$>$: implementation of a simple queue;
+	\item \textbf{stack} @ $<$stack$>$: implementation of a stack;
 \end{itemize}
 \noindent
 
@@ -112,10 +118,10 @@ Containers constituted by (non)primary key sorted elements or pair of (non)prima
 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-	\item \textbf{set} @ $<$set$>$: constituted by primary key elements;
 	\item \textbf{map} @ $<$map$>$: constituted by primary key-value elements;
-	\item \textbf{multiset} @ $<$set$>$: constituted by non primary key elements;
 	\item \textbf{multimap} @ $<$map$>$: constituted by non primary key-value elements;  
+	\item \textbf{multiset} @ $<$set$>$: constituted by non primary key elements;
+	\item \textbf{set} @ $<$set$>$: constituted by primary key elements;
 \end{itemize}
 \noindent
 Each one of these types has its \textbf{unordered\_*} counterpart, whose elements are inserted or removed in $O(1)$, and accessed in $O(n)$ for the worst case. 
@@ -126,7 +132,7 @@ Each one of these types has its \textbf{unordered\_*} counterpart, whose element
 \par\noindent\rule{155pt}{0.4pt}
 
 {\color{Blue}
-\subsection*{I/O STREAMS}	
+\subsection*{\href{https://en.cppreference.com/w/cpp/io}{\underline{I/O STREAMS}}}	
 \noindent
 Streams enable flow of data to be written (output) or to be read (input). Output streams can be buffered or not.
 The \emph{extractor operator} $<<$ when applied to input streams performs formatted input while the \emph{insertion operator} $>>$ applied to output streams performs formatted output. 
@@ -134,9 +140,9 @@ The \emph{extractor operator} $<<$ when applied to input streams performs format
 \subsubsection*{\textsc{Console Streams}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
+	\item \textbf{cerr} @ $<$iostream$>$: wrapper around the standard C stream stderr, which writes data to the console;
 	\item \textbf{cin} @ $<$iostream$>$: wrapper around the standard C stream stdin, which reads data from the console;
 	\item \textbf{cout} @ $<$iostream$>$: wrapper around the standard C stream stdout, which writes data to the console and is buffered;
-	\item \textbf{cerr} @ $<$iostream$>$: wrapper around the standard C stream stderr, which writes data to the console;
 \end{itemize}
 
 \subsubsection*{\textsc{String Streams}}
@@ -158,19 +164,19 @@ Streams that enable flow of outputted or inputted data to or from files.
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
 	\item \textbf{basic\_ifstream} @ $<$fstream$>$: provides high level file input formatting;
-	\item \textbf{basic\_ofstream} @ $<$fstream$>$: provides high level file output formatting;
 	\item \textbf{basic\_fstream} @ $<$fstream$>$: provides high level file input/output formatting;
+	\item \textbf{basic\_ofstream} @ $<$fstream$>$: provides high level file output formatting;
 \end{itemize}
 
 \subsubsection*{\textsc{Aliases}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
+	\item \textbf{ifstream} $=$ \textbf{basic\_ifstream}<char>;
 	\item \textbf{istringstream} $=$ \textbf{basic\_istringstream}<char>;
+	\item \textbf{fstream} $=$ \textbf{basic\_fstream}<char>;
+	\item \textbf{ofstream} $=$ \textbf{basic\_ofstream}<char>;
 	\item \textbf{ostringstream} $=$ \textbf{ba\-sic\_o\-string\-stream}\-<char>;
 	\item \textbf{stringstream} $=$ \textbf{basic\_stringstream}<char>;
-	\item \textbf{ifstream} $=$ \textbf{basic\_ifstream}<char>;
-	\item \textbf{ofstream} $=$ \textbf{basic\_ofstream}<char>;
-	\item \textbf{fstream} $=$ \textbf{basic\_fstream}<char>;
 \end{itemize}
 
 
@@ -178,40 +184,43 @@ Streams that enable flow of outputted or inputted data to or from files.
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
 	\item \textbf{boolalpha} @ $<$ios$>$: sets text values for booleans;
+	\item \textbf{defaultfloat} @ $<$ios$>$: outputs floats as default;
+	\item \emph{\textbf{endl}} @ $<$ostream$>$: inserts a line break and flushes the buffer; 
+	\item \emph{\textbf{ends}} @ $<$iomanip$>$: inserts a null character; 
+	\item \textbf{fixed} @ $<$ios$>$: outputs floats in fixed width;
+	\item \emph{\textbf{flush}} @ $<$ostream$>$: flushes the stream buffer; 
+	\item \emph{\textbf{get\_money}} @ $<$iomanip$>$: parse value as currency; 
+	\item \emph{\textbf{get\_time}} @ $<$iomanip$>$: parses value as a datetime; 
+	\item \emph{\textbf{getline}} @ $<$string$>$:  reads a line from input stream setting the reading pointer to the new line. By default, lines are separated by line breaks;
+	\item \textbf{hexfloat} @ $<$ios$>$: outputs floats in hex notation;
+	\item \textbf{hex} @ $<$ios$>$: outputs in base 16;
+	\item \textbf{left} @ $<$ios$>$: sets left as the output position of the fill char;
+	\item \textbf{oct} @ $<$ios$>$: outputs in base 8;
+	\item \emph{\textbf{put\_money}} @ $<$iomanip$>$: sets values to currency; 
+	\item \emph{\textbf{put\_time}} @ $<$iomanip$>$: outputs a \textbf{std:tm} object with specified format; 
+	\item \emph{\textbf{quoted}} @ $<$iomanip$>$: correctly reads and writes strings with quotes; 
+	\item \textbf{right} @ $<$ios$>$: sets right as the output position of the fill char;
+	\item \textbf{scientific} @ $<$ios$>$: outputs floats in scientific notation;
+	\item \emph{\textbf{setbase}} @ $<$iomanip$>$: sets the output base; 
+	\item \emph{\textbf{setfill}} @ $<$iomanip$>$:sets a fill character instead of white space; 
+	\item \emph{\textbf{setprecision}} @ $<$iomanip$>$: sets the precision of floats; 
+	\item \emph{\textbf{setw}} @ $<$iomanip$>$: sets the output width for the text; 
 	\item \textbf{showbase} @ $<$ios$>$: enables base prefix in numbers;
 	\item \textbf{showpoint} @ $<$ios$>$: enables decimal point in numbers;
 	\item \textbf{showpos} @ $<$ios$>$: pre-print a $+$ in nonnegative numbers;
 	\item \textbf{skipws} @ $<$ios$>$: skips white spaces;
 	\item \textbf{unitbuf} @ $<$ios$>$: sets buffer flushing for every output operation;
-	\item \textbf{hex} @ $<$ios$>$: outputs in base 16;
-	\item \textbf{oct} @ $<$ios$>$: outputs in base 8;
-	\item \textbf{fixed} @ $<$ios$>$: outputs floats in fixed width;
-	\item \textbf{scientific} @ $<$ios$>$: outputs floats in scientific notation;
-	\item \textbf{hexfloat} @ $<$ios$>$: outputs floats in hex notation;
-	\item \textbf{defaultfloat} @ $<$ios$>$: outputs floats as default;
-	\item \emph{\textbf{setbase}} @ $<$iomanip$>$: sets the output base;
-	\item \emph{\textbf{setfill}} @ $<$iomanip$>$:sets a fill character instead of white space;
-	\item \emph{\textbf{setprecision}} @ $<$iomanip$>$: sets the precision of floats;
-	\item \emph{\textbf{setw}} @ $<$iomanip$>$: sets the output width for the text;
-	\item \emph{\textbf{get\_money}} @ $<$iomanip$>$: parse value as currency;
-	\item \emph{\textbf{put\_money}} @ $<$iomanip$>$: sets values to currency;
-	\item \emph{\textbf{get\_time}} @ $<$iomanip$>$: parses value as a datetime;
-	\item \emph{\textbf{put\_time}} @ $<$iomanip$>$: outputs a \textbf{std:tm} object with specified format;
-	\item \emph{\textbf{quoted}} @ $<$iomanip$>$: correctly reads and writes strings with quotes;
-	\item \emph{\textbf{flush}} @ $<$ostreamp$>$: flushes the stream buffer;
-	\item \emph{\textbf{endl}} @ $<$ostream$>$: inserts a line break and flushes the buffer;
-	\item \emph{\textbf{ends}} @ $<$iomanip$>$: inserts a null character;
-	\item \emph{\textbf{getline}} @ $<$string$>$: reads a line from input stream setting the reading pointer to the new line. By default, lines are separated by line breaks;
+	\item \textbf{uppercase} @ $<$ios$>$: sets the output chars to be uppercased;
 \end{itemize}
 
 \subsubsection*{\textsc{States}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-	\item stream.\emph{\textbf{good}} @ $<$iostream$>$: stream is fine an can be read or written to;
-	\item stream.\emph{\textbf{bad}} @ $<$iostream$>$: stream is in a non recoverable error state;
-	\item stream.\emph{\textbf{eof}} @ $<$iostream$>$: reading pointer arrived at the end of file;
-	\item stream.\emph{\textbf{fail}} @ $<$iostream$>$: stream is in a recoverable error state;
-	\item stream.\emph{\textbf{clear}} @ $<$iostream$>$: refresh the state of the stream;
+	\item basic\_ios::\emph{\textbf{bad}} @ $<$iostream$>$: stream is in a non recoverable error state;
+	\item basic\_ios::\emph{\textbf{clear}} @ $<$iostream$>$: refresh the state of the stream;
+	\item basic\_ios::\emph{\textbf{eof}} @ $<$iostream$>$: reading pointer arrived at the end of file;
+	\item basic\_ios::\emph{\textbf{fail}} @ $<$iostream$>$: stream is in a recoverable error state;
+	\item basic\_ios::\emph{\textbf{good}} @ $<$iostream$>$: stream is fine an can be read or written to;
 \end{itemize}
 
 
@@ -220,7 +229,7 @@ Streams that enable flow of outputted or inputted data to or from files.
 \par\noindent\rule{155pt}{0.4pt}
 
 {\color{Blue}
-\subsection*{ITERATORS}	
+\subsection*{\href{https://en.cppreference.com/w/cpp/iterator}{\underline{ITERATORS}}}	
 \noindent
 Pointer-like types created to implement the iterator pattern in STL. The iterator pattern states that aggregate structures and element-accessing functions should be decoupled.
 
@@ -231,14 +240,14 @@ All types of STL containers, C arrays, input and output streams.
 \subsubsection*{\textsc{Concepts}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-	\item \textbf{output\_iterator} @ $<$iterator$>$: a type that can be both pre- and post-incremented, related to a given structure to which values can be written (e.g. output streams);
-	\item \textbf{ostream\_iterator} @ $<$iterator$>$: a specific type of out\-put\_i\-te\-ra\-tor that writes to an output stream;
+	\item \textbf{bidirectional\_iterator} @ $<$iterator$>$: a forward\_iterator able to traverse backwards; 
+	\item \textbf{contiguous\_iterator} @ $<$iterator$>$: a specific ran\-dom\_ac\-cess\_i\-te\-ra\-tor that traverses elements stored contiguously in memory (e.g. vector). 
+	\item \textbf{forward\_iterator} @ $<$iterator$>$: an input\_iterator that has equality comparison and multi-pass, which means that it can traverse multiple times the elements of an aggregate (e.g. containers); 
 	\item \textbf{input\_iterator} @ $<$iterator$>$: a type that can be both pre- and post-incremented, related to a given structures whose values can be read (e.g. input streams);
 	\item \textbf{istream\_iterator} @ $<$iterator$>$: a specific type of in\-put\_i\-te\-ra\-tor that reads from an input stream;
-	\item \textbf{forward\_iterator} @ $<$iterator$>$: an input\_iterator that has equality comparison and multi-pass, which means that it can traverse multiple times the elements of an aggregate (e.g. containers); 
-	\item \textbf{bidirectional\_iterator} @ $<$iterator$>$: a forward\_iterator able to traverse backwards; 
+	\item \textbf{ostream\_iterator} @ $<$iterator$>$: a specific type of out\-put\_i\-te\-ra\-tor that writes to an output stream;
+	\item \textbf{output\_iterator} @ $<$iterator$>$: a type that can be both pre- and post-incremented, related to a given structure to which values can be written (e.g. output streams);
 	\item \textbf{random\_access\_iterator} @ $<$iterator$>$: a bidirectional\_iterator that supports subscripting with $O(1)$ time access to elements; 
-	\item \textbf{contiguous\_iterator} @ $<$iterator$>$: a specific ran\-dom\_ac\-cess\_i\-te\-ra\-tor that traverses elements stored contiguously in memory (e.g. vector). 
 \end{itemize}
 
 \subsubsection*{\textsc{Range Functions}} 
@@ -255,103 +264,217 @@ All types of STL containers, C arrays, input and output streams.
 Iterator wrappers created to encapsulate some important iterator-related functionalities. 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-	\item \textbf{reverse\_iterator} @ $<$iterator$>$: performs reverse order traversal. This adapter can be created by the helper function \emph{\textbf{make\_reverse\_iterator}};
-	\item \textbf{move\_iterator} @ $<$iterator$>$: performs move of elements from one aggregate to another. This adapter can be created by the helper function \emph{\textbf{make\_move\_iterator}};
-	\item \textbf{insert\_iterator} @ $<$iterator$>$: performs insertion of element at a specified position. This adapter can be created by the helper function \emph{\textbf{inserter}};
 	\item \textbf{back\_insert\_iterator} @ $<$iterator$>$: performs back insertion of elements. This adapter can be created by the helper function \emph{\textbf{back\_inserter}};
 	\item \textbf{front\_insert\_iterator} @ $<$iterator$>$: performs front insertion of elements. This adapter can be created by the helper function \emph{\textbf{front\_inserter}};
+	\item \textbf{insert\_iterator} @ $<$iterator$>$: performs insertion of element at a specified position. This adapter can be created by the helper function \emph{\textbf{inserter}};
+	\item \textbf{move\_iterator} @ $<$iterator$>$: performs move of elements from one aggregate to another. This adapter can be created by the helper function \emph{\textbf{make\_move\_iterator}};
+	\item \textbf{reverse\_iterator} @ $<$iterator$>$: performs reverse order traversal. This adapter can be created by the helper function \emph{\textbf{make\_reverse\_iterator}};
 \end{itemize}
 
 \subsubsection*{\textsc{Operations}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-	\item  \emph{\textbf{distance}} @ $<$iterator$>$: returns the number of elements between two iterators in which the first is included and last excluded;
 	\item  \emph{\textbf{advance}} @ $<$iterator$>$: advances an iterator by a given distance;
+	\item  \emph{\textbf{data}} @ $<$iterator$>$: returns the pointer the given sequence container;
+	\item  \emph{\textbf{distance}} @ $<$iterator$>$: returns the number of elements between two iterators in which the first is included and last excluded;
+	\item  \emph{\textbf{empty}} @ $<$iterator$>$: checks whether the given range empty;
 	\item  \emph{\textbf{next}} @ $<$iterator$>$: increments an iterator returning it;
 	\item  \emph{\textbf{prev}} @ $<$iterator$>$: decrements an iterator returning it;
-	\item  \emph{\textbf{empty}} @ $<$iterator$>$: checks whether the given range empty;
-	\item  \emph{\textbf{data}} @ $<$iterator$>$: returns the pointer the given sequence container;
 \end{itemize}
+}
 
 \par\noindent\rule{155pt}{0.4pt}
 
 {\color{Blue}
-\subsection*{ALGORITHMS}	
+\subsection*{\href{https://en.cppreference.com/w/cpp/algorithm}{\underline{ALGORITHMS}}}	
 \noindent
-Collection of libraries providing a variety of functionalities like searching, counting, sorting, partitioning and transforming, applied to a range of elements.
+Collection of libraries that handle ranges of elements providing a variety of functionalities like searching, counting, sorting, partitioning and transforming.
 
 \subsubsection*{\textsc{Sorting Functions}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-	\item  \emph{\textbf{sort}} @ $<$algorithm$>$: sorts a range in ascending order;
-	\item  \emph{\textbf{is\_sorted}} @ $<$algorithm$>$: checks if the elements are non-descending ordered;
 	\item  \emph{\textbf{is\_sorted\_until}} @ $<$algorithm$>$: finds the largest sub-range inside a range whose elements are non-descending ordered;
-	\item  \emph{\textbf{partial\_sort}} @ $<$algorithm$>$: sorts a range in ascending order from begin until a specified position;
-	\item  \emph{\textbf{partial\_sort\_copy}} @ $<$algorithm$>$: copies an ascending sorts from begin until a specified position of a range to another range;
-	\item  \emph{\textbf{stable\_sort}} @ $<$algorithm$>$: sorts a range in ascending order such that the original order of equally indexed elements of multi-associative containers is preserved;
+	\item  \emph{\textbf{is\_sorted}} @ $<$algorithm$>$: checks if the elements are non-descending ordered;
 	\item  \emph{\textbf{nth\_element}} @ $<$algorithm$>$: rearranges the elements in such a way that the value at the position n corresponds to the n-th element of the sorted range;
+	\item  \emph{\textbf{partial\_sort\_copy}} @ $<$algorithm$>$: copies an ascending sorts from begin until a specified position of a range to another range;
+	\item  \emph{\textbf{partial\_sort}} @ $<$algorithm$>$: sorts a range in ascending order from begin until a specified position;
+	\item  \emph{\textbf{sort}} @ $<$algorithm$>$: sorts a range in ascending order;
+	\item  \emph{\textbf{stable\_sort}} @ $<$algorithm$>$: sorts a range in ascending order such that the original order of equally indexed elements of multi-associative containers is preserved;
 \end{itemize}
 
 \subsubsection*{\textsc{Main Modifying Functions}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-	\item  \emph{\textbf{copy}} @ $<$algorithm$>$: copies a range, from beginning to end, to another range;
+	\item  \emph{\textbf{copy\_backward}} @ $<$algorithm$>$: copies a range, from end to beginning, to another range;
 	\item  \emph{\textbf{copy\_if}} @ $<$algorithm$>$: copies a range, from beginning to end, to another range that obey a predicate;
 	\item  \emph{\textbf{copy\_n}} @ $<$algorithm$>$: copies n elements of a range, from beginning to end, to another range;
-	\item  \emph{\textbf{copy\_backward}} @ $<$algorithm$>$: copies a range, from end to beginning, to another range;
-	\item  \emph{\textbf{reverse\_copy}} @ $<$algorithm$>$: copies a range of size n, from end to beginning, to another range of size n;
-	\item  \emph{\textbf{move}} @ $<$algorithm$>$: moves the elements of a range, from beginning to end, to another range. Afterwards, the elements of the source range are left in undefined state;
-	\item  \emph{\textbf{move\_backward}} @ $<$algorithm$>$: moves the elements of a range, from end to beginning, to another range. Afterwards, the elements of the source range are left in undefined state;
-	\item  \emph{\textbf{swap}} @ $<$algorithm$>$: moves the values of two variables to one another;
-	\item  \emph{\textbf{swap\_ranges}} @ $<$algorithm$>$: swaps every element of a n-distance range with another n-distance range;
-	\item  \emph{\textbf{iter\_swap}} @ $<$algorithm$>$: swaps values pointed by two iterators;
-		\item  \emph{\textbf{remove}} @ $<$algorithm$>$: removes all the elements of a range equal to a value;
-	\item  \emph{\textbf{remove\_if}} @ $<$algorithm$>$: removes all the elements of a range that obey to a predicate; 
-	\item  \emph{\textbf{remove\_copy}} @ $<$algorithm$>$: copies all the elements of a range to another that are different from a value;
-	\item  \emph{\textbf{remove\_copy\_if}} @ $<$algorithm$>$: copies all the elements of a range to another that disobey a predicate; 
-	\item  \emph{\textbf{partition}} @ $<$algorithm$>$: reorders the elements of a range so that elements that obey a predicate precede the elements that don't. The relative order of the elements may not be preserved;
-	\item  \emph{\textbf{stable\_partition}} @ $<$algorithm$>$: performs the same actions of  \emph{\textbf{partition}}, but preserves the relative order of elements. 
-	\item  \emph{\textbf{partition\_copy}} @ $<$algorithm$>$: copies the elements of a range to two other ranges so that one target range receives elements that obey a predicate and the other receives the remaining elements;
-	\item  \emph{\textbf{replace}} @ $<$algorithm$>$: replaces all the elements of a range equal to a given value by a specified value;
-	\item  \emph{\textbf{replace\_if}} @ $<$algorithm$>$: replaces all the elements that obey a predicate by a specified value;
-	\item  \emph{\textbf{replace\_copy}} @ $<$algorithm$>$: copies all the elements of a range to another range replacing the elements equal to a given value by a specified value;
-	\item  \emph{\textbf{replace\_copy\_if}} @ $<$algorithm$>$: copies all the elements of a range to another range replacing the elements that obey a predicate by a specified value;
-	\item  \emph{\textbf{rotate}} @ $<$algorithm$>$: performs a left rotation of a range of elements;
-	\item  \emph{\textbf{rotate\_copy}} @ $<$algorithm$>$: copies a left rotation of a range of elements to another range;
+	\item  \emph{\textbf{copy}} @ $<$algorithm$>$: copies a range, from beginning to end, to another range;
 	\item  \emph{\textbf{fill}} @ $<$algorithm$>$: copies a specified value to all elements in a range;
 	\item  \emph{\textbf{generate}} @ $<$algorithm$>$: populates a range through a callable object;
-
-% permutation
-
+	\item  \emph{\textbf{is\_permutation}} @ $<$algorithm$>$: checks whether a range is a permutation of another range;
+	\item  \emph{\textbf{iter\_swap}} @ $<$algorithm$>$: swaps values pointed by two iterators;
+	\item  \emph{\textbf{move\_backward}} @ $<$algorithm$>$: moves the elements of a range, from end to beginning, to another range. Afterwards, the elements of the source range are left in undefined state;
+	\item  \emph{\textbf{move}} @ $<$algorithm$>$: moves the elements of a range, from beginning to end, to another range. Afterwards, the elements of the source range are left in undefined state;
+	\item  \emph{\textbf{next\_permutation}} @ $<$algorithm$>$: performs the next permutation in a range returning false if it's the last permutation. The reference is the sorted range;
+	\item  \emph{\textbf{partition\_copy}} @ $<$algorithm$>$: copies the elements of a range to two other ranges so that one target range receives elements that obey a predicate and the other receives the remaining elements;
+	\item  \emph{\textbf{partition}} @ $<$algorithm$>$: reorders the elements of a range so that elements that obey a predicate precede the elements that don't. The relative order of the elements may not be preserved;
+	\item  \emph{\textbf{prev\_permutation}} @ $<$algorithm$>$: performs the previous permutation in a range returning true if it's the first permutation. The reference is the sorted range;
+	\item  \emph{\textbf{remove\_copy\_if}} @ $<$algorithm$>$: copies all the elements of a range to another that disobey a predicate; 
+	\item  \emph{\textbf{remove\_copy}} @ $<$algorithm$>$: copies all the elements of a range to another that are different from a value;
+	\item  \emph{\textbf{remove\_if}} @ $<$algorithm$>$: removes all the elements of a range that obey to a predicate; 
+	\item  \emph{\textbf{remove}} @ $<$algorithm$>$: removes all the elements of a range equal to a value;
+	\item  \emph{\textbf{replace\_copy\_if}} @ $<$algorithm$>$: copies all the elements of a range to another range replacing the elements that obey a predicate by a specified value;
+	\item  \emph{\textbf{replace\_copy}} @ $<$algorithm$>$: copies all the elements of a range to another range replacing the elements equal to a given value by a specified value;
+	\item  \emph{\textbf{replace\_if}} @ $<$algorithm$>$: replaces all the elements that obey a predicate by a specified value;
+	\item  \emph{\textbf{replace}} @ $<$algorithm$>$: replaces all the elements of a range equal to a given value by a specified value;
+	\item  \emph{\textbf{reverse\_copy}} @ $<$algorithm$>$: copies a range of size n, from end to beginning, to another range of size n;
+	\item  \emph{\textbf{rotate\_copy}} @ $<$algorithm$>$: copies a left rotation of a range of elements to another range;
+	\item  \emph{\textbf{rotate}} @ $<$algorithm$>$: performs a left rotation of a range of elements;
+	\item  \emph{\textbf{sample}} @ $<$algorithm$>$: given a random number generator like {\textbf{mt19937}}, selects n elements of a given range and copies them to an output iterator;
+	\item  \emph{\textbf{shuffle}} @ $<$algorithm$>$: given a random number generator like {\textbf{mt19937}}, shuffles the elements of a given range;
+	\item  \emph{\textbf{stable\_partition}} @ $<$algorithm$>$: performs the same actions of  \emph{\textbf{partition}}, but preserves the relative order of elements. 
+	\item  \emph{\textbf{swap\_ranges}} @ $<$algorithm$>$: swaps every element of a n-distance range with another n-distance range;
+	\item  \emph{\textbf{swap}} @ $<$algorithm$>$: moves the values of two variables to one another;
+	\item  {\textbf{mt19937}} @ $<$random$>$: random number generator using the marsene twister algorithm;
 \end{itemize}
 
 \subsubsection*{\textsc{Main Non-modifying Functions}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-	\item  \emph{\textbf{for\_each}} @ $<$algorithm$>$: applies a callable function to the elements of a range;
-	\item  \emph{\textbf{find}} @ $<$algorithm$>$: finds the first element of a range equal to a value; 
-	\item  \emph{\textbf{find\_if}} @ $<$algorithm$>$: finds the first element of a range that obey a predicate;
-	\item  \emph{\textbf{find\_first\_if}} @ $<$algorithm$>$: finds the first element of a range that also belongs to another range;  
 	\item  \emph{\textbf{adjacent\_find}} @ $<$algorithm$>$: finds the first occurrence of two consecutive equal elements;
-	\item  \emph{\textbf{search}} @ $<$algorithm$>$: finds the first range of elements equal to a specified range of elements;  
 	\item  \emph{\textbf{binary\_search}} @ $<$algorithm$>$: finds the first element of a sorted range equal to a value;  
-	\item  \emph{\textbf{count}} @ $<$algorithm$>$: returns the frequency of a value in a range; 
+	\item  \emph{\textbf{clamp}} @ $<$algorithm$>$: given an upper and lower boundary and a value n, returns n if it is inside the range; otherwise returns the nearest boundary;  
 	\item  \emph{\textbf{count\_if}} @ $<$algorithm$>$: returns the frequency of a value in a range that obey a predicate;
+	\item  \emph{\textbf{count}} @ $<$algorithm$>$: returns the frequency of a value in a range; 
+	\item  \emph{\textbf{find\_first\_if}} @ $<$algorithm$>$: finds the first element of a range that also belongs to another range;  
+	\item  \emph{\textbf{find\_if}} @ $<$algorithm$>$: finds the first element of a range that obey a predicate;
+	\item  \emph{\textbf{find}} @ $<$algorithm$>$: finds the first element of a range equal to a value; 
+	\item  \emph{\textbf{for\_each}} @ $<$algorithm$>$: applies a callable object to the elements of a range;
+	\item  \emph{\textbf{max}} @ $<$algorithm$>$: returns the biggest value between two values or in a initializer list;  
+	\item  \emph{\textbf{min}} @ $<$algorithm$>$: returns the smallest value between two values or in a initializer list;  
+	\item  \emph{\textbf{search}} @ $<$algorithm$>$: finds the first range of elements equal to a specified range of elements;  
 \end{itemize}
+
+
 
 \subsubsection*{\textsc{Numeric Functions}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-	\item  \emph{\textbf{iota}} @ $<$numeric$>$: fills a range with successive increments of the starting value;
 	\item  \emph{\textbf{accumulate}} @ $<$numeric$>$: sums up or folds a range of elements;
-	\item  \emph{\textbf{inner\_product}} @ $<$numeric$>$: returns the inner product of two ranges;
 	\item  \emph{\textbf{adjacent\_difference}} @ $<$numeric$>$: computes the difference between two adjacent values in a range storing them in the original range;
+	\item  \emph{\textbf{inner\_product}} @ $<$numeric$>$: returns the inner product of two ranges;
+	\item  \emph{\textbf{iota}} @ $<$numeric$>$: fills a range with successive increments of the starting value;
 	\item  \emph{\textbf{partial\_sum}} @ $<$numeric$>$: sums up or folds the elements from beginning to each element position storing each result in the original range;
+\end{itemize}
+}
+
+\par\noindent\rule{155pt}{0.4pt}
+
+
+{\color{Blue}
+\subsection*{\href{https://en.cppreference.com/w/cpp/thread}{\underline{CONCURRENCY}}}	
+\noindent
+Collection of libraries that provide functionalities and structures for concurrent programming.
+
+\subsubsection*{\textsc{Theory} - \emph{Basics}} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+	\item  atomic type: ;
+	\item  thread:  
+	\item  mutex:  
+	\item condition variable: 
+\end{itemize}
+
+
+
+\subsubsection*{\textsc{Atomic Types}} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+	\item  \emph{\textbf{atomic}} @ $<$atomic$>$: atomic class template for boolean, integral and floating point types;
+	\item  \emph{\textbf{atomic\_ref}} @ $<$atomic$>$: enables atomic operations on non-atomic objects: 
+\end{itemize}
+
+
+\subsubsection*{\textsc{Threads}}
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+	\item  \emph{\textbf{thread}} @ $<$thread$>$: class providing thread functionalities;
+	\item  \emph{\textbf{jthread}} @ $<$thread$>$: class providing thread functionalities that automatically joins on destruction;
+	\item  thread::\emph{\textbf{hardware\_concurrency}} @ $<$thread$>$: returns the maximum number of system's concurrent threads;
+\end{itemize}
+
+
+\subsubsection*{\textsc{Tasks}}
+\noindent
+Provides functionalities for obtaining values asynchronously (e.g. returning a value from a child thread to a parent thread).
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+	\item  {\textbf{future}} @ $<$future$>$: class that waits and returns the value stored asynchronously in its correspondent promise;
+	\item  {\textbf{promise}} @ $<$future$>$: class that provides a way to store a value asynchronously;
+	\item  \emph{\textbf{async}} @ $<$future$>$: executes a specified function asynchronously and returns a \textbf{future};
+\end{itemize}
+
+
+\subsubsection*{\textsc{Mutual Exclusions}}
+\noindent
+Provides functionalities to avoid multiple threads to simultaneously access shared resources (data races).
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+	\item  {\textbf{mutex}} @ $<$mutex$>$: provides simple mutual exclusion functionalities;
+	\item  {\textbf{shared\_mutex}} @ $<$mutex$>$: a mutex in which while it is unique-locked, it cannot be unique or shared-locked; while shared-locked, it can be shared-locked but not unique-locked.
+	\item  {\emph{\textbf{lock\_guard}}} @ $<$mutex$>$: locks a mutex from the point where it is defined and automatically unlocks it on scope exit or exception throw.
+	\item  {\emph{\textbf{unique\_lock}}} @ $<$mutex$>$: locks a mutex from the point where it is defined and automatically unlocks it on scope exit or exception throw. It also allows manual unlocking and locking at specific points.
+	\item  {\emph{\textbf{condition\_variable}}} @ $<$condition\_variable$>$: provides a condition variable associated with a \emph{\textbf{unique\_lock}}.
+	\item  {\emph{\textbf{condition\_variable\_any}}} @ $<$condition\_variable$>$: provides a condition variable associated with any lock type.
+\end{itemize}
+
+
+
+\subsubsection*{\textsc{Supported Functions}} 
+\noindent
+Function objects (functors), lambdas, variadic templates and member functions; 
+
+
+
+}
+
+\par\noindent\rule{155pt}{0.4pt}
+
+
+{\color{Blue}
+\subsection*{\href{https://en.cppreference.com/w/cpp/memory}{\underline{SMART POINTERS}}}	
+\noindent
+Wrappers around raw pointers with automatic heap memory deallocation allowing different types of ownership.
+
+\subsubsection*{\textsc{Categories}} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+	\item  {\textbf{shared\_ptr}} @ $<$memory$>$: smart pointer in which copy is enabled. The number of copies is registered;
+	\item  {\textbf{unique\_ptr}} @ $<$memory$>$: smart pointer in which copy is disabled;
+	\item  {\textbf{weak\_ptr}} @ $<$memory$>$: smart pointer in which copy is enabled. The number of copies is not registered;
+\end{itemize}
+
+\subsubsection*{\textsc{Helper Functions}} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+	\item  \emph{\textbf{make\_shared}} @ $<$memory$>$: creates a \textbf{shared\_ptr} from a specified type and object;
+	\item  \emph{\textbf{make\_unique}} @ $<$memory$>$: creates a \textbf{unique\_ptr} from a specified type and object;
+\end{itemize}
+
+\subsubsection*{\textsc{Function Parameters}} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+	\item  \emph{\textbf{f(unique\_ptr<T> ptr)}}: caller must pass the parameter by moving it (ownership transference);
+	\item  \emph{\textbf{f(unique\_ptr<T> \&ptr)}}: function can change pointer and object states;
+	\item  \emph{\textbf{f(shared\_ptr<T> ptr)}}: another reference to the object will be created;
+	\item  \emph{\textbf{f(shared\_ptr<T> \&ptr)}}: function can change pointer and object states;
 \end{itemize}
 
 
 }
 
-}
+\par\noindent\rule{155pt}{0.4pt}
+
+
 \end{multicols*}
 \end{document}
