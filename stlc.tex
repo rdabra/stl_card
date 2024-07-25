@@ -83,8 +83,8 @@ Aggregates of elements that provide element insertion, removal and access.
   \setlength\itemsep{-1.8pt}
 	\item \emph{Array}: static or dynamic structure whose elements have defined positions and are stored in contiguous memory. Insertion and removal of elements may imply repositioning of other elements or repositioning of the entire structure; 
 	\item \emph{Linked list}: dynamic structure whose elements may not be stored contiguously. A node (list element) is composed by a value and one or two references to adjacent nodes. Nodes of a \emph{doubly-linked} list have two references, and of a \emph{singly-linked}, one reference. Insertion and removal don't imply repositioning of other elements;
-	\item \emph{Stack}: LIFO dynamic structure with one end, in which insertion, deletion and access are performed;
 	\item \emph{Queue}: FIFO dynamic structure with two ends, one for insertion and another for removal; access can be performed on both. In a \emph{double-ended} queue, both ends allow insertion and removal;  
+	\item \emph{Stack}: LIFO dynamic structure with one end, in which insertion, deletion and access are performed;
 \end{itemize}
 
 \subsubsection*{\textsc{Sequence Containers}} 
@@ -240,14 +240,14 @@ All types of STL containers, C arrays, input and output streams.
 \subsubsection*{\textsc{Concepts}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-	\item \textbf{bidirectional\_iterator} @ $<$iterator$>$: a forward\_iterator able to traverse backwards; 
-	\item \textbf{contiguous\_iterator} @ $<$iterator$>$: a specific ran\-dom\_ac\-cess\_i\-te\-ra\-tor that traverses elements stored contiguously in memory (e.g. vector). 
-	\item \textbf{forward\_iterator} @ $<$iterator$>$: an input\_iterator that has equality comparison and multi-pass, which means that it can traverse multiple times the elements of an aggregate (e.g. containers); 
+	\item \textbf{bidirectional\_iterator} @ $<$iterator$>$: a \textbf{for\-ward\_ite\-ra\-tor} able to traverse backwards; 
+	\item \textbf{contiguous\_iterator} @ $<$iterator$>$: a specific \textbf{ran\-dom\_ac\-cess\_i\-te\-ra\-tor} that traverses elements stored contiguously in memory (e.g. vector). 
+	\item \textbf{forward\_iterator} @ $<$iterator$>$: an \textbf{input\_iterator} that has equality comparison and multi-pass, which means that it can traverse multiple times the elements of an aggregate (e.g. containers); 
 	\item \textbf{input\_iterator} @ $<$iterator$>$: a type that can be both pre- and post-incremented, related to a given structures whose values can be read (e.g. input streams);
-	\item \textbf{istream\_iterator} @ $<$iterator$>$: a specific type of in\-put\_i\-te\-ra\-tor that reads from an input stream;
-	\item \textbf{ostream\_iterator} @ $<$iterator$>$: a specific type of out\-put\_i\-te\-ra\-tor that writes to an output stream;
+	\item \textbf{istream\_iterator} @ $<$iterator$>$: a specific type of \textbf{in\-put\_i\-te\-ra\-tor} that reads from an input stream;
+	\item \textbf{ostream\_iterator} @ $<$iterator$>$: a specific type of \textbf{out\-put\_i\-te\-ra\-tor} that writes to an output stream;
 	\item \textbf{output\_iterator} @ $<$iterator$>$: a type that can be both pre- and post-incremented, related to a given structure to which values can be written (e.g. output streams);
-	\item \textbf{random\_access\_iterator} @ $<$iterator$>$: a bidirectional\_iterator that supports subscripting with $O(1)$ time access to elements; 
+	\item \textbf{random\_access\_iterator} @ $<$iterator$>$: a \textbf{bidirectional\_iterator} that supports subscripting with $O(1)$ time access to elements; 
 \end{itemize}
 
 \subsubsection*{\textsc{Range Functions}} 
@@ -355,8 +355,6 @@ Collection of libraries that handle ranges of elements providing a variety of fu
 	\item  \emph{\textbf{search}} @ $<$algorithm$>$: finds the first range of elements equal to a specified range of elements;  
 \end{itemize}
 
-
-
 \subsubsection*{\textsc{Numeric Functions}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
@@ -370,7 +368,6 @@ Collection of libraries that handle ranges of elements providing a variety of fu
 
 \par\noindent\rule{155pt}{0.4pt}
 
-
 {\color{Blue}
 \subsection*{\href{https://en.cppreference.com/w/cpp/thread}{\underline{CONCURRENCY}}}	
 \noindent
@@ -379,13 +376,14 @@ Collection of libraries that provide functionalities and structures for concurre
 \subsubsection*{\textsc{Theory} - \emph{Basics}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-	\item  atomic type: ;
-	\item  thread:  
-	\item  mutex:  
-	\item condition variable: 
+	\item  \emph{atomic type}: a type whose operations are immune to data races;
+	\item  \emph{condition variable}: flag that notifies a state to multiple threads;  
+	\item  \emph{data race}: simultaneous thread accesses to shared resources;
+	\item  \emph{deadlock}: threads A and B respectively lock resources 1 and 2 and respectively wait for 2 and 1 to be released;
+	\item  \emph{mutex}: flag that notifies multiple threads whether to stop or resume execution; 
+	\item  \emph{process}: a computer program in execution;
+	\item  \emph{thread}: smallest unit of execution within a process;
 \end{itemize}
-
-
 
 \subsubsection*{\textsc{Atomic Types}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
@@ -398,8 +396,10 @@ Collection of libraries that provide functionalities and structures for concurre
 \subsubsection*{\textsc{Threads}}
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-	\item  \emph{\textbf{thread}} @ $<$thread$>$: class providing thread functionalities;
 	\item  \emph{\textbf{jthread}} @ $<$thread$>$: class providing thread functionalities that automatically joins on destruction;
+	\item  \emph{\textbf{this\_thread::get\_id}} @ $<$thread$>$: returns the id of the current thread;
+	\item  \emph{\textbf{this\_thread::sleep\_for}} @ $<$thread$>$: stops the execution of the current thread for at least a specified duration;
+	\item  \emph{\textbf{thread}} @ $<$thread$>$: class providing thread functionalities;
 	\item  thread::\emph{\textbf{hardware\_concurrency}} @ $<$thread$>$: returns the maximum number of system's concurrent threads;
 \end{itemize}
 
@@ -409,9 +409,9 @@ Collection of libraries that provide functionalities and structures for concurre
 Provides functionalities for obtaining values asynchronously (e.g. returning a value from a child thread to a parent thread).
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
+	\item  \emph{\textbf{async}} @ $<$future$>$: executes a specified function asynchronously and returns a \textbf{future};
 	\item  {\textbf{future}} @ $<$future$>$: class that waits and returns the value stored asynchronously in its correspondent promise;
 	\item  {\textbf{promise}} @ $<$future$>$: class that provides a way to store a value asynchronously;
-	\item  \emph{\textbf{async}} @ $<$future$>$: executes a specified function asynchronously and returns a \textbf{future};
 \end{itemize}
 
 
@@ -420,21 +420,17 @@ Provides functionalities for obtaining values asynchronously (e.g. returning a v
 Provides functionalities to avoid multiple threads to simultaneously access shared resources (data races).
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-	\item  {\textbf{mutex}} @ $<$mutex$>$: provides simple mutual exclusion functionalities;
-	\item  {\textbf{shared\_mutex}} @ $<$mutex$>$: a mutex in which while it is unique-locked, it cannot be unique or shared-locked; while shared-locked, it can be shared-locked but not unique-locked.
+	\item  {\emph{\textbf{condition\_variable\_any}}} @ $<$condition\_variable$>$: provides a condition variable associated with any lock type.
+	\item  {\emph{\textbf{condition\_variable}}} @ $<$condition\_variable$>$: provides a condition variable associated with a \emph{\textbf{unique\_lock}}.
 	\item  {\emph{\textbf{lock\_guard}}} @ $<$mutex$>$: locks a mutex from the point where it is defined and automatically unlocks it on scope exit or exception throw.
 	\item  {\emph{\textbf{unique\_lock}}} @ $<$mutex$>$: locks a mutex from the point where it is defined and automatically unlocks it on scope exit or exception throw. It also allows manual unlocking and locking at specific points.
-	\item  {\emph{\textbf{condition\_variable}}} @ $<$condition\_variable$>$: provides a condition variable associated with a \emph{\textbf{unique\_lock}}.
-	\item  {\emph{\textbf{condition\_variable\_any}}} @ $<$condition\_variable$>$: provides a condition variable associated with any lock type.
+	\item  {\textbf{mutex}} @ $<$mutex$>$: provides simple mutual exclusion functionalities;
+	\item  {\textbf{shared\_mutex}} @ $<$mutex$>$: a mutex in which while it is unique-locked, it cannot be unique or shared-locked; while shared-locked, it can be shared-locked but not unique-locked.
 \end{itemize}
-
-
 
 \subsubsection*{\textsc{Supported Functions}} 
 \noindent
 Function objects (functors), lambdas, variadic templates and member functions; 
-
-
 
 }
 
@@ -470,10 +466,90 @@ Wrappers around raw pointers with automatic heap memory deallocation allowing di
 	\item  \emph{\textbf{f(shared\_ptr<T> \&ptr)}}: function can change pointer and object states;
 \end{itemize}
 
-
 }
 
 \par\noindent\rule{155pt}{0.4pt}
+
+{\color{Blue}
+\subsection*{\href{https://en.cppreference.com/w/cpp/string}{\underline{STRINGS}}}	
+\noindent
+Collection of libraries that provide functionalities and structures for handling strings.
+
+\subsubsection*{\textsc{Basic Strings}} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+	\item  {\textbf{basic\_string}} @ $<$string$>$: sequence of char type objects stored contiguously in memory;
+	\item  {\textbf{basic\_string\_view}} @ $<$string$>$: wrapper around a constant reference to \textbf{basic\_string};
+\end{itemize}
+
+
+\subsubsection*{\textsc{Aliases}} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+	\item \textbf{string} $=$ \textbf{basic\_string}<char>;
+	\item \textbf{string\_view} $=$ \textbf{basic\_string\_view}<char>;
+	\item \textbf{wstring} $=$ \textbf{basic\_string}<wchar\_t>;
+	\item \textbf{wstring\_view} $=$ \textbf{basic\_string\_view}<wchar\_t>;
+\end{itemize}
+
+\subsubsection*{\textsc{Character Manipulation}} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+\item  \emph{\textbf{isalnum}} @ $<$cctype$>$: checks if a character is alphanumeric;
+\item  \emph{\textbf{isalpha}} @ $<$cctype$>$: checks if a character is alphabetic;
+\item  \emph{\textbf{isblank}} @ $<$cctype$>$: checks if a character is a blank character;
+\item  \emph{\textbf{iscntrl}} @ $<$cctype$>$: checks if a character is a control character;
+\item  \emph{\textbf{isdigit}} @ $<$cctype$>$: checks if a character is a digit;
+\item  \emph{\textbf{isgraph}} @ $<$cctype$>$: checks if a character is a graphical character;
+\item  \emph{\textbf{islower}} @ $<$cctype$>$: checks if a character is lowercase;
+\item  \emph{\textbf{isprint}} @ $<$cctype$>$: checks if a character is a printing character;
+\item  \emph{\textbf{ispunct}} @ $<$cctype$>$: checks if a character is a punctuation character;
+\item  \emph{\textbf{isspace}} @ $<$cctype$>$: checks if a character is a space character;
+\item  \emph{\textbf{isupper}} @ $<$cctype$>$: checks if a character is an uppercase character;
+\item  \emph{\textbf{isxdigit}} @ $<$cctype$>$: checks if a character is a hexadecimal character;
+\item  \emph{\textbf{tolower}} @ $<$cctype$>$: converts a character to lowercase;
+\item  \emph{\textbf{toupper}} @ $<$cctype$>$: converts a character to uppercase;
+\end{itemize}
+
+
+\subsubsection*{\textsc{Conversions}} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+\item  \emph{\textbf{stod}} @ $<$string$>$: converts a string to a double
+\item  \emph{\textbf{stof}} @ $<$string$>$: converts a string to a float
+\item  \emph{\textbf{stoi}} @ $<$string$>$: converts a string to a signed integer
+\item  \emph{\textbf{stold}} @ $<$string$>$: converts a string to a long double
+\item  \emph{\textbf{stoll}} @ $<$string$>$: converts a string to a signed long long
+\item  \emph{\textbf{stol}} @ $<$string$>$: converts a string to a signed long
+\item  \emph{\textbf{stoull}} @ $<$string$>$: converts a string to an unsigned long long
+\item  \emph{\textbf{stoul}} @ $<$string$>$: converts a string to an unsigned long
+\item  \emph{\textbf{to\_string}} @ $<$string$>$: converts an integral or floating-point value to string
+\item  \emph{\textbf{to\_wstring}} @ $<$string$>$: converts an integral or floating-point value to wstring
+\end{itemize}
+
+\par\noindent\rule{155pt}{0.4pt}
+
+{\color{Blue}
+\subsection*{\href{https://en.cppreference.com/w/cpp/utility}{\underline{UTILITIES}}}	
+\noindent
+Miscellaneous functionalities and structures.
+
+\subsubsection*{\textsc{Date and Time}} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+\item  {\textbf{system\_clock}} @ $<$chrono$>$: represents the system's real time wall clock; 
+\item  {\textbf{steady\_clock}} @ $<$chrono$>$: represents the system's clock since last boot; 
+\item  {\textbf{chrono::time\_point}} @ $<$chrono$>$: represents a point in time; 
+\item  {\textbf{chrono::duration}} @ $<$chrono$>$: time duration; 
+\item  {\textbf{chrono::hh\_mm\_ss}} @ $<$chrono$>$: splits a \textbf{chrono::duration} in hours, minutes and seconds since midnight;
+\item  {\textbf{chrono::day}} @ $<$chrono$>$: ;
+
+\end{itemize}
+
+
+}
+
+}
 
 
 \end{multicols*}
