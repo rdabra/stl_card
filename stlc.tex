@@ -537,13 +537,34 @@ Miscellaneous functionalities and structures.
 \subsubsection*{\textsc{Date and Time}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-\item  {\textbf{system\_clock}} @ $<$chrono$>$: represents the system's real time wall clock; 
-\item  {\textbf{steady\_clock}} @ $<$chrono$>$: represents the system's clock since last boot; 
+\item  {\textbf{chrono::system\_clock}} @ $<$chrono$>$: represents the system's real time wall clock; 
+\item  {\textbf{chrono::steady\_clock}} @ $<$chrono$>$: represents the system's clock since last boot; 
 \item  {\textbf{chrono::time\_point}} @ $<$chrono$>$: represents a point in time; 
 \item  {\textbf{chrono::duration}} @ $<$chrono$>$: time duration; 
 \item  {\textbf{chrono::hh\_mm\_ss}} @ $<$chrono$>$: splits a \textbf{chrono::duration} in hours, minutes and seconds since midnight;
-\item  {\textbf{chrono::day}} @ $<$chrono$>$: ;
+\item  {\textbf{time\_t}} @ $<$ctime$>$: time type that supports arithmetic operations;
+\item  \emph{\textbf{to\_time\_t}} @ $<$ctime$>$: converts a \textbf{chrono::time\_point} to a {\textbf{time\_t}} type;
+\item  \emph{\textbf{from\_time\_t}} @ $<$ctime$>$: converts a {\textbf{time\_t}} to a \textbf{chrono::time\_point};
+\item  \textbf{tm} @ $<$ctime$>$: struct constituted by date and time elements;
+\item  {\textbf{chrono::day}} @ $<$chrono$>$: represents a day of the month;
+\item  {\textbf{chrono::mnonth}} @ $<$chrono$>$: represents a month of the year;
+\item  {\textbf{chrono::year}} @ $<$chrono$>$: represents a year in the Gregorian calendar;
+\item  {\textbf{chrono::weekday}} @ $<$chrono$>$: represents a day of the week;
+\item  {\textbf{chrono::month\_day}} @ $<$chrono$>$: represents a day of the month;
+\item  {\textbf{chrono::year\_month}} @ $<$chrono$>$: represents a day of the month;
+\item  {\textbf{chrono::year\_month\_day}} @ $<$chrono$>$: represents a day of the month;
 
+
+\end{itemize}
+
+
+\subsubsection*{\textsc{Strucutures}} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+\item  {\textbf{pair}} @ $<$utility$>$: relates two heterogeneous types in a single unit; 
+\item  {\textbf{tuple}} @ $<$tuple$>$: relates many heterogeneous types in a single unit; 
+\item  \emph{\textbf{make::pair}} @ $<$utility$>$: creates a \textbf{pair} from two objects, deducing their types; 
+\item  \emph{\textbf{make::tuple}} @ $<$tuple$>$: creates a \textbf{tuple} from various objects, deducing their types; 
 \end{itemize}
 
 
