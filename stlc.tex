@@ -257,6 +257,7 @@ All types of STL containers, C arrays, input and output streams.
 	\item  \emph{\textbf{end}} @ $<$iterator$>$: returns the one-past-the-last element read-write iterator. The function \emph{\textbf{cend}} returns the read-only version;
 	\item  \emph{\textbf{rbegin}} @ $<$iterator$>$: returns the first element read-write reverse iterator. The function \emph{\textbf{crbegin}} returns the read-only version;
 	\item  \emph{\textbf{rend}} @ $<$iterator$>$: returns the one-past-the-last element read-write reverse iterator. The function \emph{\textbf{crend}} returns the read-only version;
+	\item  \emph{\textbf{ranges::reverse\_view}} @ $<$ranges$>$: returns the reversed range of its argument;
 \end{itemize}
 
 \subsubsection*{\textsc{Adapters}} 
@@ -346,6 +347,7 @@ Collection of libraries that handle ranges of elements providing a variety of fu
 	\item  \emph{\textbf{clamp}} @ $<$algorithm$>$: given an upper and lower boundary and a value n, returns n if it is inside the range; otherwise returns the nearest boundary;  
 	\item  \emph{\textbf{count\_if}} @ $<$algorithm$>$: returns the frequency of a value in a range that obey a predicate;
 	\item  \emph{\textbf{count}} @ $<$algorithm$>$: returns the frequency of a value in a range; 
+	\item  \emph{\textbf{equal}} @ $<$algorithm$>$: compares two ranges element by element, obeying or not a predicate;  
 	\item  \emph{\textbf{find\_first\_if}} @ $<$algorithm$>$: finds the first element of a range that also belongs to another range;  
 	\item  \emph{\textbf{find\_if}} @ $<$algorithm$>$: finds the first element of a range that obey a predicate;
 	\item  \emph{\textbf{find}} @ $<$algorithm$>$: finds the first element of a range equal to a value; 
