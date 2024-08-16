@@ -127,7 +127,28 @@ Containers constituted by (non)primary key sorted elements or pair of (non)prima
 Each one of these types has its \textbf{unordered\_*} counterpart, whose elements are inserted or removed in $O(1)$, and accessed in $O(n)$ for the worst case. 
 
 
+
+
+\subsubsection*{\textsc{Main functions}} 
+\noindent
+
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+	\item container::\emph{\textbf{clear}} @ $<$container$>$: empties the container;
+	\item container::\emph{\textbf{emplace\_back}} @ $<$container$>$: performs a container::\emph{\textbf{emplace}} at the end iterator;
+	\item container::\emph{\textbf{emplace\_front}} @ $<$container$>$: performs a container::\emph{\textbf{emplace}} at the begin iterator;
+	\item container::\emph{\textbf{emplace}} @ $<$container$>$: creates and inserts an object before a specified iterator and returns the interator of this inserted object;
+	\item container::\emph{\textbf{erase}} @ $<$container$>$: deletes an element whith a specified iterator or range;
+	\item container::\emph{\textbf{insert}} @ $<$container$>$: inserts a copy of an object before a specified iterator and returns the interator of this inserted object;
+	\item container::\emph{\textbf{push\_back}} @ $<$container$>$: performs a container::\emph{\textbf{insert}} at the end iterator;
+	\item container::\emph{\textbf{push\_front}} @ $<$container$>$: performs a container::\emph{\textbf{insert}} at the begin iterator;
+\end{itemize}
+\noindent
+
+
 }
+
+
 
 \par\noindent\rule{155pt}{0.4pt}
 
@@ -563,11 +584,14 @@ Miscellaneous functionalities and structures.
 \subsubsection*{\textsc{Strucutures}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
+\item  \emph{{\textbf{get<i>}}} @ $<$tuple$>$: returns the i-th element of the tuple;  
+\item  \emph{\textbf{make\_pair}} @ $<$utility$>$: creates a \textbf{pair} from two objects, deducing their types; 
+\item  \emph{\textbf{make\_tuple}} @ $<$tuple$>$: creates a \textbf{tuple} from various objects, deducing their types; 
+\item  \emph{\textbf{tie}} @ $<$tuple$>$: assings each tuple value to especified predefined variables; 
 \item  {\textbf{pair}} @ $<$utility$>$: relates two heterogeneous types in a single unit; 
-\item  {\textbf{tuple}} @ $<$tuple$>$: relates many heterogeneous types in a single unit; 
-\item  \emph{\textbf{make::pair}} @ $<$utility$>$: creates a \textbf{pair} from two objects, deducing their types; 
-\item  \emph{\textbf{make::tuple}} @ $<$tuple$>$: creates a \textbf{tuple} from various objects, deducing their types; 
+\item  {\textbf{tuple}} @ $<$tuple$>$: relates many heterogeneous types in a single unit;
 \end{itemize}
+
 
 
 }
