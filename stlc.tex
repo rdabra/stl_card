@@ -297,7 +297,7 @@ Iterator wrappers created to encapsulate some important iterator-related functio
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
 	\item  \emph{\textbf{advance}} @ $<$iterator$>$: advances an iterator by a given distance;
-	\item  \emph{\textbf{data}} @ $<$iterator$>$: returns the pointer the given sequence container;
+	\item  \emph{\textbf{data}} @ $<$iterator$>$: returns the pointer to the given sequence container;
 	\item  \emph{\textbf{distance}} @ $<$iterator$>$: returns the number of elements between two iterators in which the first is included and last excluded;
 	\item  \emph{\textbf{empty}} @ $<$iterator$>$: checks whether the given range empty;
 	\item  \emph{\textbf{next}} @ $<$iterator$>$: increments an iterator returning it;
@@ -426,6 +426,8 @@ Collection of libraries that provide functionalities and structures for concurre
 	\item  \emph{\textbf{this\_thread::get\_id}} @ $<$thread$>$: returns the id of the current thread;
 	\item  \emph{\textbf{this\_thread::sleep\_for}} @ $<$thread$>$: stops the execution of the current thread for at least a specified duration;
 	\item  \emph{\textbf{thread}} @ $<$thread$>$: class providing thread functionalities;
+  \item  thread::\emph{\textbf{detach}} @ $<$thread$>$: parent thread keeps running and doesn't call terminate on child thread;
+  \item  thread::\emph{\textbf{join}} @ $<$thread$>$: parent thread stops running to wait for child thread to end;
 	\item  thread::\emph{\textbf{hardware\_concurrency}} @ $<$thread$>$: returns the maximum number of system's concurrent threads;
 \end{itemize}
 
@@ -599,7 +601,6 @@ Miscellaneous functionalities and structures.
 \subsubsection*{\textsc{Random and Other Numbers}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-
 \item  \emph{\textbf{bernoulli\_distribution}} @ $<$random$>$: a Bernoulli distribution of generated numbers within a specified range; 
 \item  \textbf{bitset} @ $<$bitset$>$: class that represents a binary number on which  it is possible to perform bitwise operations;
 \item  \textbf{complex} @ $<$complex$>$: class that represents a complex number on which  it is possible to perform a variety of artihmetic operations;
@@ -611,8 +612,18 @@ Miscellaneous functionalities and structures.
 \item  \emph{\textbf{random\_device}} @ $<$random$>$: a random seed for the generator; 
 \item  \emph{\textbf{uniform\_int\_distribution}} @ $<$random$>$: a uniform int distribution of generated numbers within a specified range; 
 \item  \emph{\textbf{uniform\_real\_distribution}} @ $<$random$>$: a uniform real distribution of generated numbers within a specified range;
-
 \end{itemize}
+
+\subsubsection*{\textsc{Miscellaneous}} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+\item  \emph{\textbf{assert}} @ $<$cassert$>$: run time checking of boolean expression; 
+\item  \emph{\textbf{cref}}: the const version of \emph{\textbf{ref}};
+\item  \emph{\textbf{ref}}: returns an object of type \textbf{reference\_wrapper} from an lvalue. Used when a function and its arguments are passed as parameters in another function;
+\item  \emph{\textbf{static\_assert}}: compile time checking of boolean expression;
+\end{itemize}
+
+
 }
 
 }
