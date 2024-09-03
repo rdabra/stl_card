@@ -89,7 +89,7 @@ Aggregates of elements that provide element insertion, removal and access.
 
 \subsubsection*{\textsc{Sequence Containers}} 
 \noindent
-Containers whose elements can be accessed sequentially and are stored contiguously in memory.
+Containers whose elements can be accessed sequentially and are stored contiguously on the heap memory.
 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
@@ -422,10 +422,10 @@ Collection of libraries that provide functionalities and structures for concurre
 \subsubsection*{\textsc{Threads}}
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-	\item  \emph{\textbf{jthread}} @ $<$thread$>$: class providing thread functionalities that automatically joins on destruction;
+	\item  {\textbf{jthread}} @ $<$thread$>$: class providing thread functionalities that automatically joins on destruction;
 	\item  \emph{\textbf{this\_thread::get\_id}} @ $<$thread$>$: returns the id of the current thread;
 	\item  \emph{\textbf{this\_thread::sleep\_for}} @ $<$thread$>$: stops the execution of the current thread for at least a specified duration;
-	\item  \emph{\textbf{thread}} @ $<$thread$>$: class providing thread functionalities;
+	\item  {\textbf{thread}} @ $<$thread$>$: class providing thread functionalities;
   \item  thread::\emph{\textbf{detach}} @ $<$thread$>$: parent thread keeps running and doesn't call terminate on child thread;
   \item  thread::\emph{\textbf{join}} @ $<$thread$>$: parent thread stops running to wait for child thread to end;
 	\item  thread::\emph{\textbf{hardware\_concurrency}} @ $<$thread$>$: returns the maximum number of system's concurrent threads;
@@ -448,16 +448,19 @@ Provides functionalities for obtaining values asynchronously (e.g. returning a v
 Provides functionalities to avoid multiple threads to simultaneously access shared resources (data races).
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-	\item  {\emph{\textbf{condition\_variable\_any}}} @ $<$condition\_variable$>$: provides a condition variable associated with any lock type.
-	\item  {\emph{\textbf{condition\_variable}}} @ $<$condition\_variable$>$: provides a condition variable associated with a \emph{\textbf{unique\_lock}}.
-	\item  {\emph{\textbf{lock\_guard}}} @ $<$mutex$>$: locks a \textbf{mutex} from the point where it is defined and automatically unlocks it on scope exit or exception throw.
-	\item  {\emph{\textbf{unique\_lock}}} @ $<$mutex$>$: locks a \textbf{mutex} from the point where it is defined and automatically unlocks it on scope exit or exception throw. It also allows manual unlocking and locking at specific points.
+	\item  {{\textbf{condition\_variable\_any}}} @ $<$condition\_variable$>$: provides a condition variable associated with any lock type.
+	\item  {{\textbf{condition\_variable}}} @ $<$condition\_variable$>$: provides a condition variable associated with a {\textbf{unique\_lock}}.
+\item  {\textbf{defer\_lock}} @ $<$mutex$>$: parameter for {\textbf{shared\_lock}} or {\textbf{unique\_lock}} to specify not to lock at the construction.
+	\item  {{\textbf{lock\_guard}}} @ $<$mutex$>$: locks a \textbf{mutex} from the point where it is defined and automatically unlocks it on scope exit or exception throw.
+	\item  {{\textbf{unique\_lock}}} @ $<$mutex$>$: locks a \textbf{mutex} from the point where it is defined and automatically unlocks it on scope exit or exception throw. It also allows manual unlocking and locking at specific points.
 	\item  {\textbf{mutex}} @ $<$mutex$>$: provides simple mutual exclusion functionalities;
-	\item  {\emph{\textbf{shared\_lock}}} @ $<$mutex$>$: locks a \textbf{shared\_mutex} from the point where it is defined and automatically unlocks it on scope exit or exception throw. It also allows manual unlocking and locking at specific points..
-	\item  {\textbf{shared\_mutex}} @ $<$mutex$>$: a type of mutex in which while it is unique-locked, it cannot be unique or shared-locked; while shared-locked, it can be shared-locked but not unique-locked.
+	 \item  mutex::\emph{\textbf{lock}} @ $<$thread$>$: tries to lock the mutex until it succeeds;
+	 \item  mutex::\emph{\textbf{try\_lock}} @ $<$thread$>$: tries to lock the mutex and returns true or false;
+	\item  {\textbf{shared\_lock}} @ $<$shared\_mutex$>$: locks a \textbf{shared\_mutex} from the point where it is defined and automatically unlocks it on scope exit or exception throw. It also allows manual unlocking and locking at specific points..
+	\item  {{shared\_mutex}} @ $<$shared\_mutex$>$: a type of mutex in which while it is unique-locked, it cannot be unique or shared-locked; while shared-locked, it can be shared-locked but not unique-locked.
 \end{itemize}
 
-\subsubsection*{\textsc{Supported Functions}} 
+\subsubsection*{\textsc{Supported Task Functions}} 
 \noindent
 Function objects (functors), lambdas, variadic templates and member functions; 
 
@@ -621,6 +624,7 @@ Miscellaneous functionalities and structures.
 \item  \emph{\textbf{cref}}: the const version of \emph{\textbf{ref}};
 \item  \emph{\textbf{ref}}: returns an object of type \textbf{reference\_wrapper} from an lvalue. Used when a function and its arguments are passed as parameters in another function;
 \item  \emph{\textbf{static\_assert}}: compile time checking of boolean expression;
+\item  {\textbf{thread\_local}}: each thread accessing a variable declared with this type specifier will have its  own copy of the variable; 
 \end{itemize}
 
 
