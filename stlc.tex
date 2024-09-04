@@ -448,16 +448,18 @@ Provides functionalities for obtaining values asynchronously (e.g. returning a v
 Provides functionalities to avoid multiple threads to simultaneously access shared resources (data races).
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
+\item  {\textbf{adopt\_lock}} @ $<$mutex$>$: parameter for {\textbf{shared\_lock}} or {\textbf{unique\_lock}} to specify that the lock on the mutex was already performed.
 	\item  {{\textbf{condition\_variable\_any}}} @ $<$condition\_variable$>$: provides a condition variable associated with any lock type.
 	\item  {{\textbf{condition\_variable}}} @ $<$condition\_variable$>$: provides a condition variable associated with a {\textbf{unique\_lock}}.
-\item  {\textbf{defer\_lock}} @ $<$mutex$>$: parameter for {\textbf{shared\_lock}} or {\textbf{unique\_lock}} to specify not to lock at the construction.
-	\item  {{\textbf{lock\_guard}}} @ $<$mutex$>$: locks a \textbf{mutex} from the point where it is defined and automatically unlocks it on scope exit or exception throw.
+\item  {\textbf{defer\_lock}} @ $<$mutex$>$: parameter for {\textbf{shared\_lock}} or {\textbf{unique\_lock}} to specify not to lock the mutex at the construction.
+	\item  \textbf{lock\_guard} @ $<$mutex$>$: locks a \textbf{mutex} from the point where it is defined and automatically unlocks it on scope exit or exception throw.
 	\item  {{\textbf{unique\_lock}}} @ $<$mutex$>$: locks a \textbf{mutex} from the point where it is defined and automatically unlocks it on scope exit or exception throw. It also allows manual unlocking and locking at specific points.
 	\item  {\textbf{mutex}} @ $<$mutex$>$: provides simple mutual exclusion functionalities;
 	 \item  mutex::\emph{\textbf{lock}} @ $<$thread$>$: tries to lock the mutex until it succeeds;
 	 \item  mutex::\emph{\textbf{try\_lock}} @ $<$thread$>$: tries to lock the mutex and returns true or false;
+\item  {\textbf{scope\_lock}} @ $<$mutex$>$: it is the \textbf{lock\_guard} version for simultaneous locking of more than one mutex.
 	\item  {\textbf{shared\_lock}} @ $<$shared\_mutex$>$: locks a \textbf{shared\_mutex} from the point where it is defined and automatically unlocks it on scope exit or exception throw. It also allows manual unlocking and locking at specific points..
-	\item  {{shared\_mutex}} @ $<$shared\_mutex$>$: a type of mutex in which while it is unique-locked, it cannot be unique or shared-locked; while shared-locked, it can be shared-locked but not unique-locked.
+	\item  \textbf{shared\_mutex} @ $<$shared\_mutex$>$: a type of mutex in which while it is unique-locked, it cannot be unique or shared-locked; while shared-locked, it can be shared-locked but not unique-locked.
 \end{itemize}
 
 \subsubsection*{\textsc{Supported Task Functions}} 
