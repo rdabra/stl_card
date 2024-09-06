@@ -438,8 +438,9 @@ Provides functionalities for obtaining values asynchronously (e.g. returning a v
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
 	\item  \emph{\textbf{async}} @ $<$future$>$: executes a specified function asynchronously and returns a \textbf{future};
-	\item  {\textbf{future}} @ $<$future$>$: class that waits and returns the value stored asynchronously in its correspondent promise;
+	\item  {\textbf{future}} @ $<$future$>$: class that waits and returns the value stored asynchronously by its correspondent \textbf{promise};
 	\item  {\textbf{promise}} @ $<$future$>$: class that provides a way to store a value asynchronously;
+	\item  {\textbf{shared\_future}} @ $<$future$>$: a future whose copies are related to the same \textbf{promise} and then can be dispatched to different threads;
 \end{itemize}
 
 
