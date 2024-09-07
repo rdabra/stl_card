@@ -316,12 +316,15 @@ Collection of libraries that handle ranges of elements providing a variety of fu
 \subsubsection*{\textsc{Numeric Functions}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-	\item  \emph{\textbf{accumulate}} @ $<$numeric$>$: sums up or folds a range of elements;
-	\item  \emph{\textbf{adjacent\_difference}} @ $<$numeric$>$: computes the difference between two adjacent values in a range storing them in the original range;
+	\item  \emph{\textbf{accumulate}} @ $<$numeric$>$: sums up or folds sequentially a range of elements;
+		\item  \emph{\textbf{adjacent\_difference}} @ $<$numeric$>$: computes the difference between two adjacent values in a range storing them in the original range;
 	\item  \emph{\textbf{inner\_product}} @ $<$numeric$>$: returns the inner product of two ranges;
 	\item  \emph{\textbf{iota}} @ $<$numeric$>$: fills a range with successive increments of the starting value;
-	\item  \emph{\textbf{partial\_sum}} @ $<$numeric$>$: sums up or folds the elements from beginning to each element position storing each result in the original range;
-\end{itemize}
+	\item  \emph{\textbf{inclusive\_scan}} @ $<$numeric$>$: sums up or folds the elements from beginning to each element position, storing each result in the original range, according to the execution policy;
+	\item  \emph{\textbf{partial\_sum}} @ $<$numeric$>$: sums up or folds sequentially the elements from beginning to each element position, storing each result in the original range;
+\item  \emph{\textbf{reduce}} @ $<$numeric$>$: sums up or folds a range of elements according to the execution policy (it may reorder the elements);
+	\item  \emph{\textbf{transform\_reduce}} @ $<$numeric$>$: re-implementation of \emph{\textbf{inner\_product}} with execution policy support;
+	\end{itemize}
 
 
 \subsubsection*{\textsc{Sorting Functions}} 
@@ -387,7 +390,19 @@ Collection of libraries that handle ranges of elements providing a variety of fu
 	\item  \emph{\textbf{max}} @ $<$algorithm$>$: returns the biggest value between two values or in a initializer list;  
 	\item  \emph{\textbf{min}} @ $<$algorithm$>$: returns the smallest value between two values or in a initializer list;  
 	\item  \emph{\textbf{search}} @ $<$algorithm$>$: finds the first range of elements equal to a specified range of elements;  
+	\item  \emph{\textbf{transform}} @ $<$algorithm$>$: transforms each element of one or more ranges according to a predicate (one or more parameters) and populate another range with the results;  
 \end{itemize}
+
+\subsubsection*{\textsc{Execution Policies}} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+	\item  {\textbf{execution::par}} @ $<$execution$>$: the algorithm will run parallelized in multiple threads;
+\item  {\textbf{execution::par\_unseq}} @ $<$execution$>$: the algorithm may run with vectorization (single instruction in multiple data) in multiple threads; 
+	\item  {\textbf{execution::seq}} @ $<$execution$>$: the algorithm will run sequentially in a single thread;
+\item  {\textbf{execution::unseq}} @ $<$execution$>$: the algorithm may run with vectorization (single instruction in multiple data) in a single thread.
+
+\end{itemize}
+
 
 
 }
