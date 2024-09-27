@@ -93,16 +93,16 @@ Containers whose elements can be accessed sequentially and are stored contiguous
 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
-	\item \textbf{array} @ $<$array$>$: wrapper for C static arrays;
-	\item \textbf{dequeue} @ $<$dequeue$>$: implementation of a double-ended queue. Insertion, removal and access are $O(1)$;
-	\item \textbf{forward\_list} @ $<$forward\_list$>$: implementation of a singly-linked list. Insertion and removal are $O(1)$; access is $O(n)$. Provided by $<$forward\_list$>$;  
-	\item \textbf{list} @ $<$list$>$: implementation of a doubly-linked list. Insertion and removal are $O(1)$; access is $O(n)$;
-	\item \textbf{vector} @ $<$vector$>$: implementation of a dynamic array. Insertion and removal are $O(1)$ at the end, $O(n)$ elsewhere; access is $O(1)$;
+	\item \textbf{array} @ $<$array$>$: wrapper for C static arrays. The elements are created on the stack by default;
+	\item \textbf{deque} @ $<$deque$>$: implementation of a double-ended queue. The elements are created on the heap by default. Insertion, removal and access are $O(1)$;
+	\item \textbf{forward\_list} @ $<$forward\_list$>$: implementation of a singly-linked list. The elements are created on the heap by default. Insertion and removal are $O(1)$; access is $O(n)$. Provided by $<$forward\_list$>$;  
+	\item \textbf{list} @ $<$list$>$: implementation of a doubly-linked list. The elements are created on the heap by default. Insertion and removal are $O(1)$; access is $O(n)$;
+	\item \textbf{vector} @ $<$vector$>$: implementation of a dynamic array. The elements are created on the heap by default. Insertion and removal are $O(1)$ at the end, $O(n)$ elsewhere; access is $O(1)$;
 \end{itemize}
 
 \subsubsection*{\textsc{Sequence Container Adapters}} 
 \noindent
-Wrappers created around dequeue to provide other types of aggregates.
+Wrappers created around \textbf{deque} to provide other types of aggregates.
 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
