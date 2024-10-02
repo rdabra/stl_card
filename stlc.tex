@@ -8,7 +8,20 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 
-
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{inconsolata}
+\usepackage{listings}
+\lstdefinestyle{mystyle}{language=C++,
+aboveskip=1pt,belowskip=1pt,
+                basicstyle=\tiny\ttfamily,
+                keywordstyle=\color{blue}\ttfamily,
+                stringstyle=\color{red}\ttfamily,
+                commentstyle=\color{green}\ttfamily,
+                morecomment=[l][\color{magenta}]{\#}
+}
 
 \usepackage[condensed,math]{iwona}
 
@@ -47,7 +60,7 @@
 \par\noindent\rule{\linewidth}{0.4pt}
 
 \scriptsize
-\begin{multicols*}{5}
+\begin{multicols*}{4}
 
 {\color{Blue}
 \subsection*{\center{\textsc{notation}}}	
@@ -61,7 +74,7 @@
 	\item Section titles are linked to \href{https://en.cppreference.com}{\underline{cppreference.com}} 
 \end{itemize}
 
-\par\noindent\rule{155pt}{0.4pt}
+\par\noindent\rule{197pt}{0.4pt}
 
 }
 
@@ -127,30 +140,38 @@ Containers constituted by (non)primary key sorted elements or pair of (non)prima
 Each one of these types has its \textbf{unordered\_*} counterpart, whose elements are inserted or removed in $O(1)$, and accessed in $O(n)$ for the worst case. 
 
 
-
-
-\subsubsection*{\textsc{Main functions}} 
-\noindent
+\subsubsection*{\textsc{Main Member Functions}} 
+\noindent Some functions are not valid to all containers.
 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
 	\item container::\emph{\textbf{clear}} @ $<$container$>$: empties the container;
 	\item container::\emph{\textbf{emplace\_back}} @ $<$container$>$: performs a container::\emph{\textbf{emplace}} at the end iterator;
 	\item container::\emph{\textbf{emplace\_front}} @ $<$container$>$: performs a container::\emph{\textbf{emplace}} at the begin iterator;
-	\item container::\emph{\textbf{emplace}} @ $<$container$>$: creates and inserts an object before a specified iterator and returns the interator of this inserted object;
+	\item container::\emph{\textbf{emplace}} @ $<$container$>$: creates and inserts an object before a specified iterator and returns the iterator of this inserted object;
 	\item container::\emph{\textbf{erase}} @ $<$container$>$: deletes an element whith a specified iterator or range;
-	\item container::\emph{\textbf{insert}} @ $<$container$>$: inserts a copy of an object before a specified iterator and returns the interator of this inserted object;
+	\item container::\emph{\textbf{insert}} @ $<$container$>$: inserts a copy of an object before a specified iterator and returns the iterator of this inserted object;
 	\item container::\emph{\textbf{push\_back}} @ $<$container$>$: performs a container::\emph{\textbf{insert}} at the end iterator;
 	\item container::\emph{\textbf{push\_front}} @ $<$container$>$: performs a container::\emph{\textbf{insert}} at the begin iterator;
 \end{itemize}
 \noindent
 
+\subsubsection*{\textsc{Main Member Types}} 
+\noindent These types are present only in sequence containers.
+
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+	\item container::\textbf{const\_iterator} @ $<$container$>$: declares a const iterator;
+	\item container::\textbf{const\_reverse\_iterator} @ $<$container$>$: declares a const reverse iterator;
+	\item container::\textbf{iterator} @ $<$container$>$: declares an iterator;
+	\item container::\textbf{reverse\_iterator} @ $<$container$>$: declares as reverse iterator;
+\end{itemize}
+
 
 }
 
 
-
-\par\noindent\rule{155pt}{0.4pt}
+\par\noindent\rule{197pt}{0.4pt}
 
 {\color{Blue}
 \subsection*{\href{https://en.cppreference.com/w/cpp/io}{\underline{I/O STREAMS}}}	
@@ -247,7 +268,7 @@ Streams that enable flow of outputted or inputted data to or from files.
 
 }
 
-\par\noindent\rule{155pt}{0.4pt}
+\par\noindent\rule{197pt}{0.4pt}
 
 {\color{Blue}
 \subsection*{\href{https://en.cppreference.com/w/cpp/iterator}{\underline{ITERATORS}}}	
@@ -256,7 +277,7 @@ Pointer-like types created to implement the iterator pattern in STL. The iterato
 
 \subsubsection*{\textsc{Iteratable Aggregates}} 
 \noindent
-All types of STL containers, C arrays, input and output streams.
+All types of STL sequence containers, C arrays, input and output streams.
 
 \subsubsection*{\textsc{Concepts}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
@@ -277,8 +298,20 @@ All types of STL containers, C arrays, input and output streams.
 	\item  \emph{\textbf{begin}} @ $<$iterator$>$: returns the first element read-write iterator. The function \emph{\textbf{cbegin}} returns the read-only version;
 	\item  \emph{\textbf{end}} @ $<$iterator$>$: returns the one-past-the-last element read-write iterator. The function \emph{\textbf{cend}} returns the read-only version;
 	\item  \emph{\textbf{rbegin}} @ $<$iterator$>$: returns the first element read-write reverse iterator. The function \emph{\textbf{crbegin}} returns the read-only version;
-	\item  \emph{\textbf{rend}} @ $<$iterator$>$: returns the one-past-the-last element read-write reverse iterator. The function \emph{\textbf{crend}} returns the read-only version;
+ 	\item  \emph{\textbf{rend}} @ $<$iterator$>$: returns the one-past-the-last element read-write reverse iterator. The function \emph{\textbf{crend}} returns the read-only version;
 	\item  \emph{\textbf{ranges::reverse\_view}} @ $<$ranges$>$: returns the reversed range of its argument;
+\item Code example:
+{\fontfamily{zi4}\selectfont \lstset{style=mystyle}
+ \begin{lstlisting}[language=C++]
+vector<string> names{"name1", "name2", "name3"};
+for (auto it = rbegin(names); it != rend(names); ++it)
+   cout << name << " ";
+cout << endl;
+for (auto & name : ranges::reverse_view(names))
+   cout << *it << " ";
+\end{lstlisting}
+}
+
 \end{itemize}
 
 \subsubsection*{\textsc{Adapters}} 
@@ -300,12 +333,12 @@ Iterator wrappers created to encapsulate some important iterator-related functio
 	\item  \emph{\textbf{data}} @ $<$iterator$>$: returns the pointer to the given sequence container;
 	\item  \emph{\textbf{distance}} @ $<$iterator$>$: returns the number of elements between two iterators in which the first is included and last excluded;
 	\item  \emph{\textbf{empty}} @ $<$iterator$>$: checks whether the given range empty;
-	\item  \emph{\textbf{next}} @ $<$iterator$>$: increments an iterator returning it;
-	\item  \emph{\textbf{prev}} @ $<$iterator$>$: decrements an iterator returning it;
+	\item  \emph{\textbf{next}} @ $<$iterator$>$: returns the next iterator;
+	\item  \emph{\textbf{prev}} @ $<$iterator$>$: returns the previous iterator;
 \end{itemize}
 }
 
-\par\noindent\rule{155pt}{0.4pt}
+\par\noindent\rule{197pt}{0.4pt}
 
 {\color{Blue}
 \subsection*{\href{https://en.cppreference.com/w/cpp/algorithm}{\underline{ALGORITHMS}}}	
@@ -407,7 +440,7 @@ Collection of libraries that handle ranges of elements providing a variety of fu
 
 }
 
-\par\noindent\rule{155pt}{0.4pt}
+\par\noindent\rule{197pt}{0.4pt}
 
 {\color{Blue}
 \subsection*{\href{https://en.cppreference.com/w/cpp/thread}{\underline{CONCURRENCY}}}	
@@ -484,7 +517,7 @@ Function objects (functors), lambdas, variadic templates and member functions;
 
 }
 
-\par\noindent\rule{155pt}{0.4pt}
+\par\noindent\rule{197pt}{0.4pt}
 
 
 {\color{Blue}
@@ -518,7 +551,7 @@ Wrappers around raw pointers with automatic heap memory deallocation allowing di
 
 }
 
-\par\noindent\rule{155pt}{0.4pt}
+\par\noindent\rule{197pt}{0.4pt}
 
 {\color{Blue}
 \subsection*{\href{https://en.cppreference.com/w/cpp/string}{\underline{STRINGS}}}	
@@ -577,7 +610,7 @@ Collection of libraries that provide functionalities and structures for handling
 \item  \emph{\textbf{to\_wstring}} @ $<$string$>$: converts an integral or floating-point value to wstring
 \end{itemize}
 
-\par\noindent\rule{155pt}{0.4pt}
+\par\noindent\rule{197pt}{0.4pt}
 
 {\color{Blue}
 \subsection*{\href{https://en.cppreference.com/w/cpp/utility}{\underline{UTILITIES}}}	
@@ -633,6 +666,16 @@ Miscellaneous functionalities and structures.
 \item  \emph{\textbf{random\_device}} @ $<$random$>$: a random seed for the generator; 
 \item  \emph{\textbf{uniform\_int\_distribution}} @ $<$random$>$: a uniform int distribution of generated numbers within a specified range; 
 \item  \emph{\textbf{uniform\_real\_distribution}} @ $<$random$>$: a uniform real distribution of generated numbers within a specified range;
+\item Code example:
+{\fontfamily{zi4}\selectfont \lstset{style=mystyle}
+ \begin{lstlisting}[language=C++]
+mt19937 engine{random_device{}()};
+uniform_int_distribution<int> scaler{0, 100};
+for (int i{0}; i < 10; ++i) 
+   cout << scaler(engine) << " ";
+\end{lstlisting}
+ }
+
 \end{itemize}
 
 \subsubsection*{\textsc{Miscellaneous}} 
@@ -650,6 +693,7 @@ Miscellaneous functionalities and structures.
 
 }
 
-
 \end{multicols*}
+
+
 \end{document}
