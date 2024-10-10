@@ -299,6 +299,8 @@ All types of STL sequence containers, C arrays, input and output streams.
 	\item  \emph{\textbf{end}} @ $<$iterator$>$: returns the one-past-the-last element read-write iterator. The function \emph{\textbf{cend}} returns the read-only version;
 	\item  \emph{\textbf{rbegin}} @ $<$iterator$>$: returns the first element read-write reverse iterator. The function \emph{\textbf{crbegin}} returns the read-only version;
  	\item  \emph{\textbf{rend}} @ $<$iterator$>$: returns the one-past-the-last element read-write reverse iterator. The function \emph{\textbf{crend}} returns the read-only version;
+	\item  \emph{\textbf{ranges::remove\_if}} @ $<$algorithm$>$: moves all the elements of a range that obey a predicate to the end of the container and returns the removed range; 
+	\item  \emph{\textbf{ranges::remove}} @ $<$algorithm$>$: moves all the elements of a range equal to a specified value to the end of the container and returns the moved range;
 	\item  \emph{\textbf{ranges::reverse\_view}} @ $<$ranges$>$: returns the reversed range of its argument;
 \item Code example:
 {\fontfamily{zi4}\selectfont \lstset{style=mystyle}
@@ -309,6 +311,10 @@ for (auto it = rbegin(names); it != rend(names); ++it)
 cout << endl;
 for (auto & name : ranges::reverse_view(names))
    cout << *it << " ";
+
+vector<int> numbers{1, 2, 3, 4, 5, 6, 7};
+auto range = ranges::remove(begin(numbers), end(numbers), 10);
+numbers.erase(begin(range), end(range));
 \end{lstlisting}
 }
 
@@ -391,8 +397,8 @@ Collection of libraries that handle ranges of elements providing a variety of fu
 	\item  \emph{\textbf{prev\_permutation}} @ $<$algorithm$>$: performs the previous permutation in a range returning true if it's the first permutation. The reference is the sorted range;
 	\item  \emph{\textbf{remove\_copy\_if}} @ $<$algorithm$>$: copies all the elements of a range to another that disobey a predicate; 
 	\item  \emph{\textbf{remove\_copy}} @ $<$algorithm$>$: copies all the elements of a range to another that are different from a value;
-	\item  \emph{\textbf{remove\_if}} @ $<$algorithm$>$: removes all the elements of a range that obey to a predicate; 
-	\item  \emph{\textbf{remove}} @ $<$algorithm$>$: removes all the elements of a range equal to a value;
+	\item  \emph{\textbf{remove\_if}} @ $<$algorithm$>$: moves all the elements of a range that obey a predicate to the end of the container and returns the iterator to the first moved element; 
+	\item  \emph{\textbf{remove}} @ $<$algorithm$>$: moves all the elements of a range equal to a value to the end of the container and returns the iterator to the first moved element;
 	\item  \emph{\textbf{replace\_copy\_if}} @ $<$algorithm$>$: copies all the elements of a range to another range replacing the elements that obey a predicate by a specified value;
 	\item  \emph{\textbf{replace\_copy}} @ $<$algorithm$>$: copies all the elements of a range to another range replacing the elements equal to a given value by a specified value;
 	\item  \emph{\textbf{replace\_if}} @ $<$algorithm$>$: replaces all the elements that obey a predicate by a specified value;
@@ -405,6 +411,15 @@ Collection of libraries that handle ranges of elements providing a variety of fu
 	\item  \emph{\textbf{stable\_partition}} @ $<$algorithm$>$: performs the same actions of  \emph{\textbf{partition}}, but preserves the relative order of elements. 
 	\item  \emph{\textbf{swap\_ranges}} @ $<$algorithm$>$: swaps every element of a n-distance range with another n-distance range;
 	\item  \emph{\textbf{swap}} @ $<$algorithm$>$: moves the values of two variables to one another;
+\item Code example:
+{\fontfamily{zi4}\selectfont \lstset{style=mystyle}
+ \begin{lstlisting}[language=C++]
+vector<int> numbers{1, 2, 3, 4, 5, 6, 7};
+numbers.erase(remove(begin(numbers), end(numbers), 4), 
+	end(numbers));
+\end{lstlisting}
+ }
+
 \end{itemize}
 
 \subsubsection*{\textsc{Main Non-modifying Functions}} 
@@ -645,9 +660,26 @@ Miscellaneous functionalities and structures.
 \item  \emph{{\textbf{get<i>}}} @ $<$tuple$>$: returns the i-th element of the tuple;  
 \item  \emph{\textbf{make\_pair}} @ $<$utility$>$: creates a \textbf{pair} from two objects, deducing their types; 
 \item  \emph{\textbf{make\_tuple}} @ $<$tuple$>$: creates a \textbf{tuple} from various objects, deducing their types; 
+\item  {\textbf{optional}} @ $<$optional$>$: declares a variable that may or may not have a value. It is useful for certain functions returning values;
 \item  \emph{\textbf{tie}} @ $<$tuple$>$: assings each tuple value to especified predefined variables; 
 \item  {\textbf{pair}} @ $<$utility$>$: relates two heterogeneous types in a single unit; 
 \item  {\textbf{tuple}} @ $<$tuple$>$: relates many heterogeneous types in a single unit;
+\item Code example:
+{\fontfamily{zi4}\selectfont \lstset{style=mystyle}
+ \begin{lstlisting}[language=C++]
+optional<string> get_string(int x) {
+  if (x > 0)
+    return "Returning a string...";
+  return {};
+}
+int main() {
+  if (auto aux = get_string(2))
+    cout << "Value returned: " << *aux << endl;
+  else
+    cout << *aux << endl;
+}
+\end{lstlisting}
+ }
 \end{itemize}
 
 
@@ -692,6 +724,8 @@ for (int i{0}; i < 10; ++i)
 }
 
 }
+
+ 
 
 \end{multicols*}
 
