@@ -52,11 +52,11 @@ aboveskip=1pt,belowskip=1pt,
 
 \begin{document}
 \noindent
-{\large{\textbf{\emph{C++ Standard Library Cheat Sheet}}, {\small version 1.0}}	
+{\large{\textbf{\emph{C++ Standard Library Cheat Sheet}}, {\small version 1.5}}	
 }
 
 \noindent
-{\small  Roberto D. Algarte (2024)}
+{\small  Roberto D. Algarte (2026)}
 \par\noindent\rule{\linewidth}{0.4pt}
 
 \scriptsize
@@ -149,12 +149,72 @@ Each one of these types has its \textbf{unordered\_*} counterpart, whose element
 	\item container::\emph{\textbf{emplace\_back}} @ $<$container$>$: performs a container::\emph{\textbf{emplace}} at the end iterator;
 	\item container::\emph{\textbf{emplace\_front}} @ $<$container$>$: performs a container::\emph{\textbf{emplace}} at the begin iterator;
 	\item container::\emph{\textbf{emplace}} @ $<$container$>$: creates and inserts an object before a specified iterator and returns the iterator of this inserted object;
-	\item container::\emph{\textbf{erase}} @ $<$container$>$: deletes an element whith a specified iterator or range;
+	\item container::\emph{\textbf{erase}} @ $<$container$>$: deletes elements in a specified range;
 	\item container::\emph{\textbf{insert}} @ $<$container$>$: inserts a copy of an object before a specified iterator and returns the iterator of this inserted object;
 	\item container::\emph{\textbf{push\_back}} @ $<$container$>$: performs a container::\emph{\textbf{insert}} at the end iterator;
 	\item container::\emph{\textbf{push\_front}} @ $<$container$>$: performs a container::\emph{\textbf{insert}} at the begin iterator;
 \end{itemize}
 \noindent
+
+
+\subsubsection*{\textsc{Practical Member Functions (day-to-day)}} 
+\noindent These are the ones you end up reaching for constantly.
+
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+  \item container::\emph{\textbf{size}} @ $<$container$>$: number of elements currently stored;
+  \item container::\emph{\textbf{empty}} @ $<$container$>$: checks if \emph{size == 0};
+  \item container::\emph{\textbf{begin/end}} @ $<$container$>$: iterators to the first element / one-past-the-last element;
+  \item container::\emph{\textbf{cbegin/cend}} @ $<$container$>$: const iterators (read-only);
+  \item container::\emph{\textbf{front/back}} @ $<$container$>$: references to first/last element (\textbf{precondition:} not empty);
+  \item container::\emph{\textbf{swap}} @ $<$container$>$: swaps contents in $O(1)$ (typically by swapping pointers/metadata);
+\end{itemize}
+
+\subsubsection*{\textsc{Vector functions} @ $<$vector$>$} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+  \item vector::\emph{\textbf{operator[]}}: unchecked random access;
+  \item vector::\emph{\textbf{at}}: checked access (throws \textbf{std::out\_of\_range});
+  \item vector::\emph{\textbf{data}}: pointer to contiguous storage (\emph{C array view});
+  \item vector::\emph{\textbf{capacity}}: number of elements that fit before reallocation;
+  \item vector::\emph{\textbf{reserve}}: grows capacity (does \textbf{not} change size);
+  \item vector::\emph{\textbf{resize}}: changes size (creates/destroys elements);
+  \item vector::\emph{\textbf{shrink\_to\_fit}}: non-binding request to release unused capacity;
+  \item \emph{\textbf{std::erase / std::erase\_if}} (C++20): convenient erase for \textbf{vector} (\emph{no erase-remove boilerplate});
+\end{itemize}
+
+\subsubsection*{\textsc{Deque functions} @ $<$deque$>$} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+  \item deque::\emph{\textbf{push\_front/push\_back}}: inserts at both ends in $O(1)$;
+  \item deque::\emph{\textbf{emplace\_front/emplace\_back}}: constructs at both ends in-place;
+  \item deque::\emph{\textbf{pop\_front/pop\_back}}: removes from both ends in $O(1)$;
+  \item deque::\emph{\textbf{operator[]/at}}: random access exists (but storage is \textbf{not contiguous});
+  \item \emph{\textbf{std::erase / std::erase\_if}} (C++20): convenient erase for \textbf{deque};
+\end{itemize}
+
+\subsubsection*{\textsc{unordered\_map functions} @ $<$unordered\_map$>$} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+  \item unordered\_map::\emph{\textbf{find}}: returns iterator to key or \emph{end()};
+  \item unordered\_map::\emph{\textbf{contains}} (C++20): membership test (no iterator);
+  \item unordered\_map::\emph{\textbf{at}}: access without insertion (throws if missing);
+  \item unordered\_map::\emph{\textbf{operator[]}}: access \textbf{with insertion} of default value if key missing;
+  \item unordered\_map::\emph{\textbf{try\_emplace}} (C++17): inserts only if missing; constructs value only on insertion;
+  \item unordered\_map::\emph{\textbf{insert\_or\_assign}} (C++17): insert if missing, otherwise overwrite value;
+  \item unordered\_map::\emph{\textbf{reserve/rehash}}: control bucket growth and reduce rehash events;
+  \item unordered\_map::\emph{\textbf{load\_factor/max\_load\_factor}}: hash-table density controls;
+  \item unordered\_map::\emph{\textbf{bucket\_count}}: number of buckets (changes on rehash);
+  \item unordered\_map::\emph{\textbf{extract/merge}} (C++17): node handles (move elements between maps without reallocation);
+\end{itemize}
+
+\subsubsection*{\textsc{Iterator invalidation (quick rules)}} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+  \item \textbf{vector}: reallocation invalidates \emph{all} iterators/references/pointers; erase/insert invalidates from the point of change to the end;
+  \item \textbf{deque}: safest assumption is \emph{mutating operations can invalidate iterators}; do not keep iterators across push/pop/insert/erase unless you check the exact rule;
+  \item \textbf{unordered\_map}: \emph{rehash} invalidates \textbf{all iterators}; references/pointers to elements generally remain valid, but iterators do not;
+\end{itemize}
 
 \subsubsection*{\textsc{Main Member Types}} 
 \noindent These types are present only in sequence containers.
@@ -411,6 +471,8 @@ Collection of libraries that handle ranges of elements providing a variety of fu
 	\item  \emph{\textbf{stable\_partition}} @ $<$algorithm$>$: performs the same actions of  \emph{\textbf{partition}}, but preserves the relative order of elements. 
 	\item  \emph{\textbf{swap\_ranges}} @ $<$algorithm$>$: swaps every element of a n-distance range with another n-distance range;
 	\item  \emph{\textbf{swap}} @ $<$algorithm$>$: moves the values of two variables to one another;
+	\item  \emph{\textbf{ranges::unique}} @ $<$algorithm$>$: removes duplicated values and returns a pair of [begin,end] iterators of the excess tail;
+	
 \item Code example:
 {\fontfamily{zi4}\selectfont \lstset{style=mystyle}
  \begin{lstlisting}[language=C++]
@@ -436,7 +498,10 @@ numbers.erase(remove(begin(numbers), end(numbers), 4),
 	\item  \emph{\textbf{find}} @ $<$algorithm$>$: finds the first element of a range equal to a value; 
 	\item  \emph{\textbf{for\_each}} @ $<$algorithm$>$: applies a callable object to the elements of a range;
 	\item  \emph{\textbf{max}} @ $<$algorithm$>$: returns the biggest value between two values or in a initializer list;  
+	\item  \emph{\textbf{ranges::max\_element}} @ $<$algorithm$>$: returns the address of the biggest value in a container;  
 	\item  \emph{\textbf{min}} @ $<$algorithm$>$: returns the smallest value between two values or in a initializer list;  
+	\item  \emph{\textbf{ranges::min\_element}} @ $<$algorithm$>$: returns the address of the smallest value in a container;  
+	\item  \emph{\textbf{ranges::minmax\_element}} @ $<$algorithm$>$: returns a pair of address of the smallest and biggest values in a container;  	
 	\item  \emph{\textbf{search}} @ $<$algorithm$>$: finds the first range of elements equal to a specified range of elements;  
 	\item  \emph{\textbf{transform}} @ $<$algorithm$>$: transforms each element of one or more ranges according to a predicate (one or more parameters) and populate another range with the results;  
 \end{itemize}

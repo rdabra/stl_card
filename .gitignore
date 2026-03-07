@@ -6,3 +6,9 @@
 *.synctex
 *.toc
 /*.out
+
+.Rhistory
+
+*.fdb_latexmk
+
+*.fls
