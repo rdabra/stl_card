@@ -193,6 +193,23 @@ Each one of these types has its \textbf{unordered\_*} counterpart, whose element
   \item \emph{\textbf{std::erase / std::erase\_if}} (C++20): convenient erase for \textbf{deque};
 \end{itemize}
 
+\subsubsection*{\textsc{List functions} @ $<$list$>$} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+  \item list::\emph{\textbf{push\_front/push\_back}}: inserts a copy at the beginning/end in $O(1)$;
+  \item list::\emph{\textbf{pop\_front/pop\_back}}: removes the first/last element in $O(1)$;
+  \item list::\emph{\textbf{insert}}: inserts a copy before a specified iterator and returns the iterator to the inserted element;
+  \item list::\emph{\textbf{remove}}: removes all elements equal to a specified value;
+  \item list::\emph{\textbf{remove\_if}}: removes all elements that obey a predicate;
+  \item list::\emph{\textbf{unique}}: removes consecutive duplicated elements;
+  \item list::\emph{\textbf{sort}}: sorts the elements using the list's member sort;
+  \item list::\emph{\textbf{merge}}: merges another sorted list into the current sorted list;
+  \item list::\emph{\textbf{reverse}}: reverses the order of the elements;
+  \item list::\emph{\textbf{splice}}: transfers nodes from another \textbf{list} to a specified position without copying elements;
+  \item list::\emph{\textbf{front/back}}: references to the first/last element (\textbf{precondition:} not empty);
+\end{itemize}
+
+
 \subsubsection*{\textsc{unordered\_map functions} @ $<$unordered\_map$>$} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
@@ -270,18 +287,6 @@ Streams that enable flow of outputted or inputted data to or from files.
 	\item \textbf{basic\_ofstream} @ $<$fstream$>$: provides high level file output formatting;
 \end{itemize}
 
-\subsubsection*{\textsc{Aliases}} 
-\begin{itemize}[leftmargin=*,topsep=0.25pt]
-  \setlength\itemsep{-1.8pt}
-	\item \textbf{ifstream} $=$ \textbf{basic\_ifstream}<char>;
-	\item \textbf{istringstream} $=$ \textbf{basic\_istringstream}<char>;
-	\item \textbf{fstream} $=$ \textbf{basic\_fstream}<char>;
-	\item \textbf{ofstream} $=$ \textbf{basic\_ofstream}<char>;
-	\item \textbf{ostringstream} $=$ \textbf{ba\-sic\_o\-string\-stream}\-<char>;
-	\item \textbf{stringstream} $=$ \textbf{basic\_stringstream}<char>;
-\end{itemize}
-
-
 \subsubsection*{\textsc{Manipulators and Formatters}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
@@ -314,6 +319,18 @@ Streams that enable flow of outputted or inputted data to or from files.
 	\item \textbf{unitbuf} @ $<$ios$>$: sets buffer flushing for every output operation;
 	\item \textbf{uppercase} @ $<$ios$>$: sets the output chars to be uppercased;
 \end{itemize}
+
+\subsubsection*{\textsc{Aliases}} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+	\item \textbf{ifstream} $=$ \textbf{basic\_ifstream}<char>;
+	\item \textbf{istringstream} $=$ \textbf{basic\_istringstream}<char>;
+	\item \textbf{fstream} $=$ \textbf{basic\_fstream}<char>;
+	\item \textbf{ofstream} $=$ \textbf{basic\_ofstream}<char>;
+	\item \textbf{ostringstream} $=$ \textbf{ba\-sic\_o\-string\-stream}\-<char>;
+	\item \textbf{stringstream} $=$ \textbf{basic\_stringstream}<char>;
+\end{itemize}
+
 
 \subsubsection*{\textsc{States}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
