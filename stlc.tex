@@ -627,7 +627,7 @@ Wrappers around raw pointers with automatic heap memory deallocation allowing di
   \setlength\itemsep{-1.8pt}
 	\item  {\textbf{shared\_ptr}} @ $<$memory$>$: smart pointer in which copy is enabled. The number of copies is registered;
 	\item  {\textbf{unique\_ptr}} @ $<$memory$>$: smart pointer in which copy is disabled;
-	\item  {\textbf{weak\_ptr}} @ $<$memory$>$: smart pointer in which copy is enabled. The number of copies is not registered;
+	\item  {\textbf{weak\_ptr}} @ $<$memory$>$: smart pointer in which copy is enabled. The number of copies is not registered. Dangling pointers can be checked.
 \end{itemize}
 
 \subsubsection*{\textsc{Helper Functions}} 
