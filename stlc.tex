@@ -764,6 +764,26 @@ int main() {
  }
 \end{itemize}
 
+\subsubsection*{\textsc{numeric\_limits} @ $<$limits$>$} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+  \item numeric\_limits<T>::\emph{\textbf{min}}: smallest positive finite value for floating types; smallest finite value for integer types;
+  \item numeric\_limits<T>::\emph{\textbf{lowest}} (C++11): lowest finite value representable by \textbf{T};
+  \item numeric\_limits<T>::\emph{\textbf{max}}: largest finite value representable by \textbf{T};
+  \item numeric\_limits<T>::\emph{\textbf{epsilon}}: distance between 1 and the next representable floating-point value;
+  \item numeric\_limits<T>::\emph{\textbf{infinity}}: positive infinity value if supported;
+  \item numeric\_limits<T>::\emph{\textbf{quiet\_NaN}}: quiet NaN value if supported;
+  \item numeric\_limits<T>::\emph{\textbf{signaling\_NaN}}: signaling NaN value if supported;
+  \item numeric\_limits<T>::\emph{\textbf{denorm\_min}}: smallest positive subnormal value for floating-point types;
+  \item numeric\_limits<T>::\textbf{is\_signed}: \textbf{true} if \textbf{T} is signed;
+  \item numeric\_limits<T>::\textbf{is\_integer}: \textbf{true} if \textbf{T} is an integer type;
+  \item numeric\_limits<T>::\textbf{is\_exact}: \textbf{true} if \textbf{T} represents values exactly;
+  \item numeric\_limits<T>::\textbf{digits}: number of radix digits that can be represented without change;
+  \item numeric\_limits<T>::\textbf{digits10}: number of base-10 digits that can be represented without change;
+  \item numeric\_limits<T>::\textbf{max\_digits10} (C++11): number of base-10 digits required to uniquely represent \textbf{T};
+  \item numeric\_limits<T>::\textbf{has\_infinity}: \textbf{true} if infinity is supported;
+  \item numeric\_limits<T>::\textbf{has\_quiet\_NaN}: \textbf{true} if quiet NaN is supported;
+\end{itemize}
 
 
 \subsubsection*{\textsc{Random and Other Numbers}} 
