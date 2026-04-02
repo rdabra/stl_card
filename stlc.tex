@@ -1,65 +1,116 @@
 \documentclass[10pt]{article}
 \usepackage[a4paper,margin=5mm,landscape]{geometry}
-\usepackage{blindtext}
 
 \usepackage{multicol}
 \usepackage{enumitem}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{float}
 
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsthm}
-\usepackage{inconsolata}
+
+% ---------- typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[sfdefault,condensed]{roboto}
+\usepackage[scaled=0.84]{inconsolata}
+\usepackage{microtype}
+
+\renewcommand{\familydefault}{\sfdefault}
+\linespread{0.98}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+% ---------- colors ----------
+\definecolor{PageBg}{RGB}{250,250,247}
+\definecolor{AccentBlue}{RGB}{28,84,140}
+\definecolor{RuleGray}{RGB}{180,186,195}
+\definecolor{BodyText}{RGB}{34,38,42}
+\definecolor{CodeBg}{RGB}{242,244,247}
+\definecolor{CommentGreen}{RGB}{64,120,90}
+\definecolor{StringRed}{RGB}{160,68,72}
+\definecolor{PreprocPurple}{RGB}{122,79,153}
+
+\pagecolor{PageBg}
+\color{BodyText}
+\colorlet{Blue}{BodyText}
+
+% ---------- layout ----------
+\setlength{\columnsep}{7pt}
+\setlength{\columnseprule}{0.25pt}
+\setlength{\textfloatsep}{2pt}
+\setlength{\floatsep}{2pt}
+\setlength{\intextsep}{2pt}
+
+% ---------- links ----------
+\hypersetup{
+  colorlinks=true,
+  urlcolor=AccentBlue,
+  linkcolor=AccentBlue,
+  citecolor=AccentBlue
+}
+\urlstyle{same}
+
+% ---------- section titles ----------
+\usepackage{titlesec}
+\titleformat{\subsection}
+  {\color{AccentBlue}\large\bfseries\scshape}
+  {}{0pt}{}
+  [{}]
+
+\titleformat{\subsubsection}
+  {\color{AccentBlue}\normalsize\bfseries\scshape}
+  {}{0pt}{}
+
+\titlespacing*{\subsection}{0pt}{4pt}{2pt}
+%\titlespacing*{\subsubsection}{0pt}{2.5pt}{1pt}
+
+\titlespacing*{\subsubsection}{0pt}{0.5pt}{0.5pt}
+%\setlist[itemize]{leftmargin=*,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=-1.6pt}
+
+% ---------- code ----------
 \usepackage{listings}
-\lstdefinestyle{mystyle}{language=C++,
-aboveskip=1pt,belowskip=1pt,
-                basicstyle=\tiny\ttfamily,
-                keywordstyle=\color{blue}\ttfamily,
-                stringstyle=\color{red}\ttfamily,
-                commentstyle=\color{green}\ttfamily,
-                morecomment=[l][\color{magenta}]{\#}
+\lstdefinestyle{mystyle}{
+  language=C++,
+  aboveskip=2pt,
+  belowskip=2pt,
+  basicstyle=\fontsize{6.2}{7.0}\ttfamily\color{BodyText},
+  keywordstyle=\color{AccentBlue}\bfseries,
+  stringstyle=\color{StringRed},
+  commentstyle=\color{CommentGreen}\itshape,
+  morecomment=[l][\color{PreprocPurple}]{\#},
+  backgroundcolor=\color{CodeBg},
+  frame=single,
+  framerule=0.25pt,
+  rulecolor=\color{RuleGray},
+  breaklines=true,
+  breakatwhitespace=false,
+  showstringspaces=false,
+  columns=fullflexible,
+  keepspaces=true,
+  tabsize=2,
+  xleftmargin=2pt,
+  xrightmargin=2pt
 }
 
-\usepackage[condensed,math]{iwona}
-
-\usepackage[sfdefault,condensed]{roboto}  %% Option 'sfdefault' only if the base font of the document is to be sans serif
-\usepackage[T1]{fontenc}
-
-
-% Marca d'agua
-%\usepackage{draftwatermark}
-%\SetWatermarkText{Draft}
-%\SetWatermarkScale{5}
-
-\setlength{\columnseprule}{.5pt}
-\linespread{.95}
-
-\usepackage{titlesec}
-\titlespacing{\subsection}{0pc}{3.pt}{1.pt}
-\titlespacing{\subsubsection}{0pc}{1.5pt}{1.pt}
-
-\definecolor{mygray}{RGB}{245, 245, 245}
-\pagecolor{mygray}
-
-\usepackage{float}
-
-\setlength{\textfloatsep}{1pt}
-\setlength{\floatsep}{1pt}
-\setlength{\intextsep}{1pt}
+% ---------- helper ----------
+\newcommand{\softseparator}{%
+  \par\noindent{\color{RuleGray}\rule{\linewidth}{0.35pt}}\vspace{1pt}
+}
 
 \begin{document}
 \noindent
-{\large{\textbf{\emph{C++ Standard Library Cheat Sheet}}, {\small version 1.5}}	
-}
+{\fontsize{15}{16}\selectfont\bfseries\textit{C++ Standard Library Cheat Sheet}}
+\hfill{\footnotesize\color{AccentBlue}version 1.5}
 
-\noindent
-{\small  Roberto D. Algarte (2026)}
-\par\noindent\rule{\linewidth}{0.4pt}
+{\footnotesize Roberto D. Algarte (2026)}
+\softseparator
 
 \scriptsize
+\raggedcolumns
 \begin{multicols*}{4}
 
 {\color{Blue}
@@ -74,7 +125,7 @@ aboveskip=1pt,belowskip=1pt,
 	\item Section titles are linked to \href{https://en.cppreference.com}{\underline{cppreference.com}} 
 \end{itemize}
 
-\par\noindent\rule{197pt}{0.4pt}
+\softseparator
 
 }
 
@@ -86,7 +137,7 @@ Aggregates of elements that provide element insertion, removal and access.
 \subsubsection*{\textsc{Theory} - \emph{Time Complexity}} 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[scale=.21]{complexity.jpg}	
+\IfFileExists{complexity.jpg}{\includegraphics[scale=.21]{complexity.jpg}}{\fbox{\parbox[c][3.2cm][c]{0.88\linewidth}{\centering Complexity image\\(complexity.jpg)}}}	
 \end{center}
 \end{figure}
 
@@ -139,7 +190,6 @@ Containers constituted by (non)primary key sorted elements or pair of (non)prima
 \noindent
 Each one of these types has its \textbf{unordered\_*} counterpart, whose elements are inserted or removed in $O(1)$, and accessed in $O(n)$ for the worst case. 
 
-
 \subsubsection*{\textsc{Main Member Functions}} 
 \noindent Some functions are not valid to all containers.
 
@@ -155,7 +205,6 @@ Each one of these types has its \textbf{unordered\_*} counterpart, whose element
 	\item container::\emph{\textbf{push\_front}} @ $<$container$>$: performs a container::\emph{\textbf{insert}} at the begin iterator;
 \end{itemize}
 \noindent
-
 
 \subsubsection*{\textsc{Practical Member Functions (day-to-day)}} 
 \noindent These are the ones you end up reaching for constantly.
@@ -209,7 +258,6 @@ Each one of these types has its \textbf{unordered\_*} counterpart, whose element
   \item list::\emph{\textbf{front/back}}: references to the first/last element (\textbf{precondition:} not empty);
 \end{itemize}
 
-
 \subsubsection*{\textsc{unordered\_map functions} @ $<$unordered\_map$>$} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
@@ -244,11 +292,9 @@ Each one of these types has its \textbf{unordered\_*} counterpart, whose element
 	\item container::\textbf{reverse\_iterator} @ $<$container$>$: declares as reverse iterator;
 \end{itemize}
 
-
 }
 
-
-\par\noindent\rule{197pt}{0.4pt}
+\softseparator
 
 {\color{Blue}
 \subsection*{\href{https://en.cppreference.com/w/cpp/io}{\underline{I/O STREAMS}}}	
@@ -274,7 +320,6 @@ Streams that enable flow of outputted or inputted strings.
 	\item \textbf{basic\_ostringstream} @ $<$sstream$>$: provides high level string output formatting;
 	\item \textbf{basic\_stringstream} @ $<$sstream$>$: provides high level string input/output formatting;
 \end{itemize}
-
 
 \subsubsection*{\textsc{File Streams}} 
 \noindent
@@ -331,7 +376,6 @@ Streams that enable flow of outputted or inputted data to or from files.
 	\item \textbf{stringstream} $=$ \textbf{basic\_stringstream}<char>;
 \end{itemize}
 
-
 \subsubsection*{\textsc{States}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
@@ -342,10 +386,9 @@ Streams that enable flow of outputted or inputted data to or from files.
 	\item basic\_ios::\emph{\textbf{good}} @ $<$iostream$>$: stream is fine an can be read or written to;
 \end{itemize}
 
-
 }
 
-\par\noindent\rule{197pt}{0.4pt}
+\softseparator
 
 {\color{Blue}
 \subsection*{\href{https://en.cppreference.com/w/cpp/iterator}{\underline{ITERATORS}}}	
@@ -421,13 +464,12 @@ Iterator wrappers created to encapsulate some important iterator-related functio
 \end{itemize}
 }
 
-\par\noindent\rule{197pt}{0.4pt}
+\softseparator
 
 {\color{Blue}
 \subsection*{\href{https://en.cppreference.com/w/cpp/algorithm}{\underline{ALGORITHMS}}}	
 \noindent  
 Collection of libraries that handle ranges of elements providing a variety of functionalities like searching, counting, sorting, partitioning and transforming.
-
 
 \subsubsection*{\textsc{Numeric Functions}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
@@ -441,7 +483,6 @@ Collection of libraries that handle ranges of elements providing a variety of fu
 \item  \emph{\textbf{reduce}} @ $<$numeric$>$: sums up or folds a range of elements according to the execution policy (it may reorder the elements);
 	\item  \emph{\textbf{transform\_reduce}} @ $<$numeric$>$: re-implementation of \emph{\textbf{inner\_product}} with execution policy support;
 	\end{itemize}
-
 
 \subsubsection*{\textsc{Sorting Functions}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
@@ -533,11 +574,9 @@ numbers.erase(remove(begin(numbers), end(numbers), 4),
 
 \end{itemize}
 
-
-
 }
 
-\par\noindent\rule{197pt}{0.4pt}
+\softseparator
 
 {\color{Blue}
 \subsection*{\href{https://en.cppreference.com/w/cpp/thread}{\underline{CONCURRENCY}}}	
@@ -563,7 +602,6 @@ Collection of libraries that provide functionalities and structures for concurre
 	\item  \emph{\textbf{atomic\_ref}} @ $<$atomic$>$: enables atomic operations on non-atomic objects: 
 \end{itemize}
 
-
 \subsubsection*{\textsc{Threads}}
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
@@ -576,7 +614,6 @@ Collection of libraries that provide functionalities and structures for concurre
 	\item  thread::\emph{\textbf{hardware\_concurrency}} @ $<$thread$>$: returns the maximum number of system's concurrent threads;
 \end{itemize}
 
-
 \subsubsection*{\textsc{Tasks}}
 \noindent
 Provides functionalities for obtaining values asynchronously (e.g. returning a value from a child thread to a parent thread).
@@ -587,7 +624,6 @@ Provides functionalities for obtaining values asynchronously (e.g. returning a v
 	\item  {\textbf{promise}} @ $<$future$>$: class that provides a way to store a value asynchronously;
 	\item  {\textbf{shared\_future}} @ $<$future$>$: a future whose copies are related to the same \textbf{promise} and then can be dispatched to different threads;
 \end{itemize}
-
 
 \subsubsection*{\textsc{Mutual Exclusions}}
 \noindent
@@ -614,8 +650,7 @@ Function objects (functors), lambdas, variadic templates and member functions;
 
 }
 
-\par\noindent\rule{197pt}{0.4pt}
-
+\softseparator
 
 {\color{Blue}
 \subsection*{\href{https://en.cppreference.com/w/cpp/memory}{\underline{SMART POINTERS}}}	
@@ -648,7 +683,7 @@ Wrappers around raw pointers with automatic heap memory deallocation allowing di
 
 }
 
-\par\noindent\rule{197pt}{0.4pt}
+\softseparator
 
 {\color{Blue}
 \subsection*{\href{https://en.cppreference.com/w/cpp/string}{\underline{STRINGS}}}	
@@ -661,7 +696,6 @@ Collection of libraries that provide functionalities and structures for handling
 	\item  {\textbf{basic\_string}} @ $<$string$>$: sequence of char type objects stored contiguously in memory;
 	\item  {\textbf{basic\_string\_view}} @ $<$string$>$: wrapper around a constant reference to \textbf{basic\_string};
 \end{itemize}
-
 
 \subsubsection*{\textsc{Aliases}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
@@ -691,7 +725,6 @@ Collection of libraries that provide functionalities and structures for handling
 \item  \emph{\textbf{toupper}} @ $<$cctype$>$: converts a character to uppercase;
 \end{itemize}
 
-
 \subsubsection*{\textsc{Conversions}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
@@ -707,7 +740,7 @@ Collection of libraries that provide functionalities and structures for handling
 \item  \emph{\textbf{to\_wstring}} @ $<$string$>$: converts an integral or floating-point value to wstring
 \end{itemize}
 
-\par\noindent\rule{197pt}{0.4pt}
+\softseparator
 
 {\color{Blue}
 \subsection*{\href{https://en.cppreference.com/w/cpp/utility}{\underline{UTILITIES}}}	
@@ -734,7 +767,6 @@ Miscellaneous functionalities and structures.
 \item  {\textbf{chrono::year\_month}} @ $<$chrono$>$: represents a day of the month;
 \item  {\textbf{chrono::year\_month\_day}} @ $<$chrono$>$: represents a day of the month;
 \end{itemize}
-
 
 \subsubsection*{\textsc{Strucutures}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
@@ -763,28 +795,6 @@ int main() {
 \end{lstlisting}
  }
 \end{itemize}
-
-\subsubsection*{\textsc{numeric\_limits} @ $<$limits$>$} 
-\begin{itemize}[leftmargin=*,topsep=0.25pt]
-  \setlength\itemsep{-1.8pt}
-  \item numeric\_limits<T>::\emph{\textbf{min}}: smallest positive finite value for floating types; smallest finite value for integer types;
-  \item numeric\_limits<T>::\emph{\textbf{lowest}} (C++11): lowest finite value representable by \textbf{T};
-  \item numeric\_limits<T>::\emph{\textbf{max}}: largest finite value representable by \textbf{T};
-  \item numeric\_limits<T>::\emph{\textbf{epsilon}}: distance between 1 and the next representable floating-point value;
-  \item numeric\_limits<T>::\emph{\textbf{infinity}}: positive infinity value if supported;
-  \item numeric\_limits<T>::\emph{\textbf{quiet\_NaN}}: quiet NaN value if supported;
-  \item numeric\_limits<T>::\emph{\textbf{signaling\_NaN}}: signaling NaN value if supported;
-  \item numeric\_limits<T>::\emph{\textbf{denorm\_min}}: smallest positive subnormal value for floating-point types;
-  \item numeric\_limits<T>::\textbf{is\_signed}: \textbf{true} if \textbf{T} is signed;
-  \item numeric\_limits<T>::\textbf{is\_integer}: \textbf{true} if \textbf{T} is an integer type;
-  \item numeric\_limits<T>::\textbf{is\_exact}: \textbf{true} if \textbf{T} represents values exactly;
-  \item numeric\_limits<T>::\textbf{digits}: number of radix digits that can be represented without change;
-  \item numeric\_limits<T>::\textbf{digits10}: number of base-10 digits that can be represented without change;
-  \item numeric\_limits<T>::\textbf{max\_digits10} (C++11): number of base-10 digits required to uniquely represent \textbf{T};
-  \item numeric\_limits<T>::\textbf{has\_infinity}: \textbf{true} if infinity is supported;
-  \item numeric\_limits<T>::\textbf{has\_quiet\_NaN}: \textbf{true} if quiet NaN is supported;
-\end{itemize}
-
 
 \subsubsection*{\textsc{Random and Other Numbers}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
@@ -822,7 +832,6 @@ for (int i{0}; i < 10; ++i)
 \item  {\textbf{thread\_local}}: each thread accessing a variable declared with this type specifier will have its  own copy of the variable; 
 \end{itemize}
 
-
 }
 
 }
@@ -830,6 +839,5 @@ for (int i{0}; i < 10; ++i)
  
 
 \end{multicols*}
-
 
 \end{document}
