@@ -153,7 +153,7 @@ Aggregates of elements that provide element insertion, removal and access.
 
 \subsubsection*{\textsc{Sequence Containers}} 
 \noindent
-Containers whose elements can be accessed sequentially and are stored contiguously on the heap memory.
+Containers whose elements can be accessed sequentially and are stored contiguously on the heap memory, except the array.
 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
@@ -161,7 +161,8 @@ Containers whose elements can be accessed sequentially and are stored contiguous
 	\item \textbf{deque} @ $<$deque$>$: implementation of a double-ended queue. The elements are created on the heap by default. Insertion, removal and access are $O(1)$;
 	\item \textbf{forward\_list} @ $<$forward\_list$>$: implementation of a singly-linked list. The elements are created on the heap by default. Insertion and removal are $O(1)$; access is $O(n)$. Provided by $<$forward\_list$>$;  
 	\item \textbf{list} @ $<$list$>$: implementation of a doubly-linked list. The elements are created on the heap by default. Insertion and removal are $O(1)$; access is $O(n)$;
-	\item \textbf{vector} @ $<$vector$>$: implementation of a dynamic array. The elements are created on the heap by default. Insertion and removal are $O(1)$ at the end, $O(n)$ elsewhere; access is $O(1)$;
+  \item \textbf{span} @ $<$span$>$ (C++20): a non-owing view (reference) of contiguous sequence containers such as C array, \textbf{array}, \textbf{vector}, \textbf{string}. It can  reference these containers indiscriminately;
+	\item \textbf{vector} @ $<$vector$>$: implementation of a dynamic array. The elements are created on the heap by default. Insertion and removal are $O(1)$ at the end, $O(n)$ elsewhere; access is $O(1)$.
 \end{itemize}
 
 \subsubsection*{\textsc{Sequence Container Adapters}} 
@@ -542,6 +543,17 @@ numbers.erase(remove(begin(numbers), end(numbers), 4),
 
 \end{itemize}
 
+\subsubsection*{\textsc{Execution Policies}} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+  \item  {\textbf{execution::par}} @ $<$execution$>$: the algorithm will run parallelized in multiple threads;
+\item  {\textbf{execution::par\_unseq}} @ $<$execution$>$: the algorithm may run with vectorization (single instruction in multiple data) in multiple threads; 
+  \item  {\textbf{execution::seq}} @ $<$execution$>$: the algorithm will run sequentially in a single thread;
+\item  {\textbf{execution::unseq}} @ $<$execution$>$: the algorithm may run with vectorization (single instruction in multiple data) in a single thread.
+
+\end{itemize}
+
+
 \subsubsection*{\textsc{Main Non-modifying Functions}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
@@ -564,15 +576,6 @@ numbers.erase(remove(begin(numbers), end(numbers), 4),
 	\item  \emph{\textbf{transform}} @ $<$algorithm$>$: transforms each element of one or more ranges according to a predicate (one or more parameters) and populate another range with the results;  
 \end{itemize}
 
-\subsubsection*{\textsc{Execution Policies}} 
-\begin{itemize}[leftmargin=*,topsep=0.25pt]
-  \setlength\itemsep{-1.8pt}
-	\item  {\textbf{execution::par}} @ $<$execution$>$: the algorithm will run parallelized in multiple threads;
-\item  {\textbf{execution::par\_unseq}} @ $<$execution$>$: the algorithm may run with vectorization (single instruction in multiple data) in multiple threads; 
-	\item  {\textbf{execution::seq}} @ $<$execution$>$: the algorithm will run sequentially in a single thread;
-\item  {\textbf{execution::unseq}} @ $<$execution$>$: the algorithm may run with vectorization (single instruction in multiple data) in a single thread.
-
-\end{itemize}
 
 }
 
