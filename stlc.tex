@@ -110,7 +110,6 @@
 \softseparator
 
 \scriptsize
-\raggedcolumns
 \begin{multicols*}{4}
 
 {\color{Blue}
@@ -161,7 +160,7 @@ Containers whose elements can be accessed sequentially and are stored contiguous
 	\item \textbf{deque} @ $<$deque$>$: implementation of a double-ended queue. The elements are created on the heap by default. Insertion, removal and access are $O(1)$;
 	\item \textbf{forward\_list} @ $<$forward\_list$>$: implementation of a singly-linked list. The elements are created on the heap by default. Insertion and removal are $O(1)$; access is $O(n)$. Provided by $<$forward\_list$>$;  
 	\item \textbf{list} @ $<$list$>$: implementation of a doubly-linked list. The elements are created on the heap by default. Insertion and removal are $O(1)$; access is $O(n)$;
-  \item \textbf{span} @ $<$span$>$ (C++20): a non-owing view (reference) of contiguous sequence containers such as C array, \textbf{array}, \textbf{vector}, \textbf{string}. It can  reference these containers indiscriminately;
+  \item \textbf{span} @ $<$span$>$: a non-owing view (reference) of contiguous sequence containers such as C array, \textbf{array}, \textbf{vector}, \textbf{string}. It can  reference these containers indiscriminately;
 	\item \textbf{vector} @ $<$vector$>$: implementation of a dynamic array. The elements are created on the heap by default. Insertion and removal are $O(1)$ at the end, $O(n)$ elsewhere; access is $O(1)$.
 \end{itemize}
 
@@ -230,7 +229,7 @@ Each one of these types has its \textbf{unordered\_*} counterpart, whose element
   \item vector::\emph{\textbf{reserve}}: grows capacity (does \textbf{not} change size);
   \item vector::\emph{\textbf{resize}}: changes size (creates/destroys elements);
   \item vector::\emph{\textbf{shrink\_to\_fit}}: non-binding request to release unused capacity;
-  \item \emph{\textbf{std::erase / std::erase\_if}} (C++20): convenient erase for \textbf{vector} (\emph{no erase-remove boilerplate});
+  \item \emph{\textbf{std::erase / std::erase\_if}}: convenient erase for \textbf{vector}. For conditional erase, preserves the elements that obeys the predicate;
 \end{itemize}
 
 \subsubsection*{\textsc{Deque functions} @ $<$deque$>$} 
@@ -240,7 +239,7 @@ Each one of these types has its \textbf{unordered\_*} counterpart, whose element
   \item deque::\emph{\textbf{emplace\_front/emplace\_back}}: constructs at both ends in-place;
   \item deque::\emph{\textbf{pop\_front/pop\_back}}: removes from both ends in $O(1)$;
   \item deque::\emph{\textbf{operator[]/at}}: random access exists (but storage is \textbf{not contiguous});
-  \item \emph{\textbf{std::erase / std::erase\_if}} (C++20): convenient erase for \textbf{deque};
+  \item \emph{\textbf{std::erase / std::erase\_if}}: convenient erase for \textbf{deque}. For conditional erase, preserves the elements that obeys the predicate;
 \end{itemize}
 
 \subsubsection*{\textsc{List functions} @ $<$list$>$} 
@@ -263,7 +262,7 @@ Each one of these types has its \textbf{unordered\_*} counterpart, whose element
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
   \item unordered\_map::\emph{\textbf{find}}: returns iterator to key or \emph{end()};
-  \item unordered\_map::\emph{\textbf{contains}} (C++20): membership test (no iterator);
+  \item unordered\_map::\emph{\textbf{contains}}: membership test (no iterator);
   \item unordered\_map::\emph{\textbf{at}}: access without insertion (throws if missing);
   \item unordered\_map::\emph{\textbf{operator[]}}: access \textbf{with insertion} of default value if key missing;
   \item unordered\_map::\emph{\textbf{try\_emplace}} (C++17): inserts only if missing; constructs value only on insertion;
@@ -333,6 +332,18 @@ Streams that enable flow of outputted or inputted data to or from files.
 	\item \textbf{basic\_ofstream} @ $<$fstream$>$: provides high level file output formatting;
 \end{itemize}
 
+\subsubsection*{\textsc{Aliases}} 
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+  \setlength\itemsep{-1.8pt}
+  \item \textbf{ifstream} $=$ \textbf{basic\_ifstream}<char>;
+  \item \textbf{istringstream} $=$ \textbf{basic\_istringstream}<char>;
+  \item \textbf{fstream} $=$ \textbf{basic\_fstream}<char>;
+  \item \textbf{ofstream} $=$ \textbf{basic\_ofstream}<char>;
+  \item \textbf{ostringstream} $=$ \textbf{ba\-sic\_o\-string\-stream}\-<char>;
+  \item \textbf{stringstream} $=$ \textbf{basic\_stringstream}<char>;
+\end{itemize}
+
+
 \subsubsection*{\textsc{Manipulators and Formatters}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
   \setlength\itemsep{-1.8pt}
@@ -366,16 +377,6 @@ Streams that enable flow of outputted or inputted data to or from files.
 	\item \textbf{uppercase} @ $<$ios$>$: sets the output chars to be uppercased;
 \end{itemize}
 
-\subsubsection*{\textsc{Aliases}} 
-\begin{itemize}[leftmargin=*,topsep=0.25pt]
-  \setlength\itemsep{-1.8pt}
-	\item \textbf{ifstream} $=$ \textbf{basic\_ifstream}<char>;
-	\item \textbf{istringstream} $=$ \textbf{basic\_istringstream}<char>;
-	\item \textbf{fstream} $=$ \textbf{basic\_fstream}<char>;
-	\item \textbf{ofstream} $=$ \textbf{basic\_ofstream}<char>;
-	\item \textbf{ostringstream} $=$ \textbf{ba\-sic\_o\-string\-stream}\-<char>;
-	\item \textbf{stringstream} $=$ \textbf{basic\_stringstream}<char>;
-\end{itemize}
 
 \subsubsection*{\textsc{States}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
@@ -708,6 +709,35 @@ Collection of libraries that provide functionalities and structures for handling
 	\item \textbf{wstring} $=$ \textbf{basic\_string}<wchar\_t>;
 	\item \textbf{wstring\_view} $=$ \textbf{basic\_string\_view}<wchar\_t>;
 \end{itemize}
+
+\subsubsection*{\textsc{String functions}}
+\begin{itemize}[leftmargin=*,topsep=0.25pt]
+\setlength\itemsep{-1.8pt}
+
+\item \emph{\textbf{size / length}}: returns the number of characters in the string;
+\item \emph{\textbf{empty}}: checks whether the string has no characters;
+\item \emph{\textbf{clear}}: removes all characters from the string;
+\item \emph{\textbf{at}}: accesses a character by index and  performs bounds checking;
+\item \emph{\textbf{front / back}}: accesses the first or last character;
+\item \emph{\textbf{data / c\_str}}: returns a pointer to the underlying character array;
+\item \emph{\textbf{push\_back / pop\_back}}: appends or removes one character at the end;
+\item \emph{\textbf{append}}: appends characters or another string;
+\item \emph{\textbf{insert}}: inserts characters or another string at a given position;
+\item \emph{\textbf{erase}}: removes characters from a given position or range;
+\item \emph{\textbf{replace}}: replaces part of the string with another string;
+\item \emph{\textbf{substr}}: creates a substring from a given position and length;
+\item \emph{\textbf{find / rfind}}: searches for a substring or character from the beginning or from the end;
+\item \emph{\textbf{find\_first\_of / find\_last\_of}}: searches for any character from a given set;
+\item \emph{\textbf{find\_first\_not\_of / find\_last\_not\_of}}: searches for a character not belonging to a given set;
+\item \emph{\textbf{starts\_with / ends\_with}}: checks whether a string has a given prefix or suffix;
+\item \emph{\textbf{contains}}: checks whether a string contains a given substring or character;
+\item \emph{\textbf{compare}}: compares strings lexicographically;
+\item \emph{\textbf{resize}}: changes the string size, possibly adding characters;
+\item \emph{\textbf{reserve / capacity / shrink\_to\_fit}}: manages the internal storage capacity;
+\item \emph{\textbf{std::erase / std::erase\_if}}: convenient erase for \textbf{string} (\emph{no erase-remove boilerplate}). For conditional erase, keeps the elements that obeys the predicate;
+\end{itemize}
+
+
 
 \subsubsection*{\textsc{Character Manipulation}} 
 \begin{itemize}[leftmargin=*,topsep=0.25pt]
